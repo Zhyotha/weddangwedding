@@ -1,0 +1,36 @@
+{
+  "name": "Wish",
+  "type": "object",
+  "properties": {
+    "guest_name": {
+      "type": "string",
+      "title": "Nama Tamu"
+    },
+    "message": {
+      "type": "string",
+      "title": "Ucapan & Doa"
+    },
+    "attendance": {
+      "type": "string",
+      "title": "Kehadiran"
+    }
+  },
+  "required": [
+    "guest_name",
+    "message"
+  ],
+  "rls": {
+    "read": {},
+    "create": {},
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

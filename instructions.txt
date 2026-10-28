@@ -1,0 +1,218 @@
+==========================================================
+UNDANGAN PERNIKAHAN ROMLI & ANDINI - PANDUAN EDIT
+Wedding invitation - editing guide
+==========================================================
+
+ISI PAKET / WHAT IS INSIDE
+  src/lib/wedding.js ............ SEMUA data undangan (nama, tanggal, ayat, acara, lokasi, gambar)
+  src/lib/ambientMusic.js ....... musik latar (nada dibuat langsung di browser)
+  src/components/invitation/ .... tampilan tiap bagian undangan (label & tombol)
+  src/pages/Home.jsx ............ susunan halaman (urutan bagian undangan)
+  src/index.css ................. warna & font tema
+  base44/entities/ .............. struktur data RSVP dan Ucapan
+  index.html .................... judul tab browser, deskripsi, Google Fonts
+
+  Catatan: folder "node_modules" dan file ".env.local" tidak disertakan
+  (dibuat sendiri saat menjalankan di komputer, lihat bagian 5).
+
+----------------------------------------------------------
+1. CARA PALING MUDAH MENGEDIT
+----------------------------------------------------------
+Cara termudah: minta lewat chat Base44 ("ganti nama mempelai jadi ...",
+"ganti foto sampul ..."), perubahan langsung tampil dan terbit.
+
+Paket zip ini untuk Anda yang ingin mengedit sendiri di komputer.
+
+Semua teks dan gambar diatur dari SATU file: src/lib/wedding.js
+
+----------------------------------------------------------
+2. MENGUBAH TEKS
+----------------------------------------------------------
+2a. DATA UTAMA -> src/lib/wedding.js
+
+  groom.name ................ nama mempelai pria            ("Romli")
+  groom.initial ............. inisial, huruf besar          ("R")
+  groom.order ............... urutan anak                   ("Putra pertama dari")
+  groom.father / mother ..... nama orang tua pria
+  bride.name ................ nama mempelai wanita          ("Andini")
+  bride.initial ............. inisial                       ("A")
+  bride.order ............... urutan anak                   ("Putri pertama dari")
+  bride.father / mother ..... nama orang tua wanita
+  initials .................. monogram di sampul             ("R & A")
+  dateLabel ................. tanggal panjang                ("Jumat, 6 November 2026")
+  dateShort ................. tanggal ringkas di sampul      ("06 - 11 - 2026")
+  region .................... kota/daerah                    ("Tanimbar, Maluku")
+  countdownTarget ........... waktu hitung mundur, format ISO + zona waktu
+                              ("2026-11-06T09:00:00+07:00" = 6 Nov 2026 jam 09.00 WIB)
+                              PENTING: ubah ini juga setiap kali tanggal berubah.
+  verse ..................... isi ayat / kutipan
+  verseSource ............... sumber ayat
+  events .................... daftar acara; tiap acara punya label, day, time.
+                              Tambah/kurangi acara = tambah/kurangi satu blok { ... },
+  venue.name ................ nama lokasi                    ("Tanimbar")
+  venue.detail .............. alamat lengkap
+  venue.mapsUrl ............. link Google Maps (cari lokasi di maps.google.com,
+                              klik Bagikan -> Salin tautan, lalu tempel di sini)
+
+  Aturan sederhana: ubah hanya teks DI DALAM tanda kutip "..." .
+  Jangan hapus tanda kutip, koma, atau kurung kurawal { }.
+
+2b. LABEL BAGIAN (tulisan kecil huruf kapital di atas tiap bagian)
+    Cari teks di dalam <SectionLabel> ... </SectionLabel> pada file berikut:
+
+  "Undangan"                 -> src/components/invitation/GreetingSection.jsx
+  "Mempelai"                 -> src/components/invitation/CoupleSection.jsx
+  "Hari yang dinanti"        -> src/components/invitation/CountdownSection.jsx
+  "Rangkaian Acara"          -> src/components/invitation/EventsSection.jsx
+  "Lokasi Acara"             -> src/components/invitation/VenueSection.jsx
+  "Konfirmasi Kehadiran"     -> src/components/invitation/RsvpSection.jsx
+  "Ucapan & Doa"             -> src/components/invitation/WishesSection.jsx
+  "Bagikan momentmu"         -> src/components/invitation/ShareSection.jsx
+
+2c. TEKS LAIN (tombol, salam, ucapan terima kasih)
+
+  Sampul / pintu masuk     -> src/components/invitation/CoverGate.jsx
+      "Kepada" (label nama tamu), tombol "Buka Undangan"
+  Panel kiri desktop       -> src/components/invitation/CoverPanel.jsx
+      "Scroll ke bawah"
+  Sambutan                 -> src/components/invitation/GreetingSection.jsx
+  Konfirmasi kehadiran     -> src/components/invitation/RsvpSection.jsx
+      "Hadir" / "Tidak Hadir", "Terima kasih, {nama}", tombol kirim,
+      ringkasan jumlah tamu
+  Ucapan & doa             -> src/components/invitation/WishesSection.jsx
+      contoh isian, tombol "Kirim Ucapan", "Mengirim..."
+  Penutup                  -> src/components/invitation/SiteFooter.jsx
+      "Dibuat dengan cinta" dan keterangan penutup
+  Judul tab browser        -> index.html  (<title> dan <meta name="description">)
+
+  Ubah hanya teks di antara tanda kutip atau di antara > dan < .
+  Jangan mengubah nama className, tanda kutip, atau tanda kurung.
+
+----------------------------------------------------------
+3. MENGUBAH GAMBAR
+----------------------------------------------------------
+Ada 3 gambar, semuanya diatur di src/lib/wedding.js bagian images:
+
+  images.cover .... foto sampul / utama (potret mempelai)
+                    dipakai di: layar pembuka (CoverGate), panel kiri desktop
+                    (CoverPanel), dan bagian pembuka (OpeningSection)
+                    Rasio disarankan: 4:5 potret, minimal 1600 x 2000 px
+  images.hands .... foto berdua / genggaman tangan di bagian "Mempelai"
+                    Rasio disarankan: 3:2 mendatar, minimal 1800 x 1200 px
+  images.coast .... foto lokasi / suasana daerah di bagian "Lokasi Acara"
+                    Rasio disarankan: 16:10 mendatar, minimal 1920 x 1200 px
+
+Format aman: JPG atau PNG. Usahakan di bawah 500 KB per gambar.
+
+CARA 1 - pakai tautan gambar (paling cepat)
+  Unggah foto ke penyimpanan gambar / Google Drive yang dibagikan publik,
+  atau unggah lewat chat Base44, lalu ganti tautannya:
+
+       images: {
+         cover: "https://media.base44.com/images/public/.../foto-sampul.jpg",
+         hands: "https://media.base44.com/images/public/.../foto-berdua.jpg",
+         coast: "https://media.base44.com/images/public/.../foto-lokasi.jpg",
+       },
+
+CARA 2 - simpan file gambar di dalam proyek (lebih rapi & cepat)
+  1. Buat folder images di dalam folder public
+  2. Simpan foto di sana, misalnya sampul.jpg
+  3. Tulis path-nya di wedding.js dengan garis miring di depan:
+
+       images: {
+         cover: "/images/sampul.jpg",
+         hands: "/images/berdua.jpg",
+         coast: "/images/lokasi.jpg",
+       },
+
+  Catatan: foto otomatis dipotong (crop) mengikuti bingkainya, jadi
+  pastikan wajah / objek utama berada di tengah foto.
+
+----------------------------------------------------------
+4. MUSIK LATAR
+----------------------------------------------------------
+  Musik TIDAK memakai file mp3. Nadanya dibuat langsung oleh browser
+  (Web Audio API) di: src/lib/ambientMusic.js
+
+  - CHORDS ............ daftar nada (angka frekuensi dalam Hz).
+                        Ganti angkanya untuk mengubah melodi/akornya.
+  - CHORD_DURATION .... durasi tiap akor dalam detik (6 = lambat & tenang).
+  - master.gain ....... angka 0.4 di fungsi start() adalah volume
+                        (kecilkan misalnya menjadi 0.2 kalau terlalu keras).
+
+  Tombol musik (ikon di kanan bawah) ada di
+  src/components/invitation/MusicToggle.jsx dan dipasang di src/pages/Home.jsx.
+
+  INGIN PAKAI LAGU SENDIRI (mp3)?
+  Paling mudah: unggah file mp3-nya di chat Base44 lalu minta
+  "pakai lagu ini sebagai musik latar". Kalau mengedit sendiri di komputer,
+  simpan lagu di folder public/music lalu minta contoh kode pemutar audio
+  di chat Base44 (file src/lib/ambientMusic.js diganti pemutar biasa).
+
+----------------------------------------------------------
+5. MENJALANKAN DI KOMPUTER (melihat hasil sebelum terbit)
+----------------------------------------------------------
+  Butuh Node.js versi 18 atau lebih baru -> unduh di nodejs.org (pilih LTS).
+
+  LANGKAH:
+  1. Ekstrak zip ini, lalu buka Terminal / Command Prompt di folder
+     wedding-invitation-source.
+  2. npm install          (sekali saja, mengunduh semua kebutuhan)
+  3. Buat file baru bernama .env.local di folder yang sama, isinya:
+
+       VITE_BASE44_APP_ID=6ae1e4f683288ed36eb14c2c
+       VITE_BASE44_APP_BASE_URL=https://romli-andini-wedding-invitation-6eb14c2c.base44.app
+
+     (tanpa tanda kutip, simpan sebagai file biasa)
+  4. npm run dev
+  5. Buka tautan http://localhost:5173 yang muncul di terminal.
+
+  Setiap kali file disimpan, halaman otomatis diperbarui.
+  Melihat tampilan ponsel: klik kanan -> Inspect -> ikon ponsel
+  (Ctrl+Shift+M di Chrome / Edge).
+  Versi siap-unggah: npm run build (hasil di folder dist/).
+
+----------------------------------------------------------
+6. PENTING - DATA RSVP & UCAPAN
+----------------------------------------------------------
+  Daftar konfirmasi kehadiran dan ucapan tamu TIDAK disimpan di file dalam
+  zip ini. Data itu tersimpan di database Base44 (lihat base44/entities:
+  Rsvp.jsonc dan Wish.jsonc) dan berjalan penuh hanya saat aplikasi
+  dijalankan di Base44.
+
+  Kalau undangan dijalankan di hosting lain (Netlify / Vercel), formulir
+  RSVP dan ucapan tidak akan tersimpan. Untuk undangan yang dipakai tamu
+  sungguhan, gunakan versi Base44.
+
+----------------------------------------------------------
+7. NAMA TAMU OTOMATIS DI URL
+----------------------------------------------------------
+  Tambahkan ?to=Nama+Tamu di akhir tautan undangan, contoh:
+
+    https://alamat-undangan-anda/?to=Bapak+Budi+Santoso
+
+  Nama muncul di sampul ("Kepada") dan otomatis mengisi kolom nama pada
+  formulir RSVP dan ucapan. Buat tautan berbeda untuk setiap tamu.
+
+==========================================================
+ENGLISH SUMMARY
+==========================================================
+  All text and images live in: src/lib/wedding.js
+    - Names, parents, dates, verse, events[], venue -> edit text inside "quotes".
+    - countdownTarget must change with the date (format 2026-11-06T09:00:00+07:00).
+    - images.cover / images.hands / images.coast -> new image URL, or save files in
+      the public/images folder and use "/images/filename.jpg".
+      Cover portrait 4:5, hands 3:2 landscape, coast 16:10 landscape.
+
+  Music is generated in the browser (no mp3): src/lib/ambientMusic.js.
+  To use your own song, upload the mp3 in Base44 chat and ask
+  "use this as background music".
+
+  Run locally: Node 18+, npm install, then create .env.local containing
+    VITE_BASE44_APP_ID=6ae1e4f683288ed36eb14c2c
+    VITE_BASE44_APP_BASE_URL=https://romli-andini-wedding-invitation-6eb14c2c.base44.app
+  then npm run dev and open http://localhost:5173
+
+  RSVP submissions and wishes are stored in Base44's database, not in these files.
+  Personalise a guest link with ?to=Guest+Name at the end of the URL.
+==========================================================

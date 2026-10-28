@@ -1,0 +1,46 @@
+{
+  "name": "Rsvp",
+  "type": "object",
+  "properties": {
+    "guest_name": {
+      "type": "string",
+      "title": "Nama Tamu"
+    },
+    "attendance": {
+      "type": "string",
+      "enum": [
+        "hadir",
+        "tidak_hadir"
+      ],
+      "default": "hadir",
+      "title": "Kehadiran"
+    },
+    "guest_count": {
+      "type": "number",
+      "default": 1,
+      "title": "Jumlah Tamu"
+    },
+    "note": {
+      "type": "string",
+      "title": "Catatan"
+    }
+  },
+  "required": [
+    "guest_name",
+    "attendance"
+  ],
+  "rls": {
+    "read": {},
+    "create": {},
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
