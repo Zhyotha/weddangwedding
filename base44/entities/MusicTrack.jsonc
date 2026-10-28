@@ -1,0 +1,33 @@
+{
+  "name": "MusicTrack",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "title": "Judul Lagu"
+    },
+    "file_url": {
+      "type": "string",
+      "title": "File Lagu"
+    },
+    "file_name": {
+      "type": "string",
+      "title": "Nama File"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": false,
+      "title": "Dipakai Sebagai Musik Latar"
+    }
+  },
+  "required": [
+    "title",
+    "file_url"
+  ],
+  "rls": {
+    "read": {},
+    "create": {},
+    "update": {},
+    "delete": {}
+  }
+}
