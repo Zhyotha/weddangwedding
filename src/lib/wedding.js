@@ -16,7 +16,7 @@ export const WEDDING = {
   initials: "R & A",
   dateLabel: "Jumat, 6 November 2026",
   dateShort: "06 · 11 · 2026",
-  region: "Tanimbar, Maluku",
+  region: "Tajinan, Malang",
   countdownTarget: "2026-11-06T09:00:00+07:00",
   verse:
     "Di antara tanda-tanda (kebesaran)-Nya ialah bahwa Dia menciptakan pasangan-pasangan untukmu dari (jenis) dirimu sendiri agar kamu merasa tenteram kepadanya. Dia menjadikan di antaramu rasa cinta dan kasih sayang. Sesungguhnya pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir.",
