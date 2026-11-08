@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { base44 } from "@/api/base44Client";
+import { loginWithMfa } from "@/lib/authMfa";
+import { signInWithProvider } from "@/lib/authMfaFlow";
+import MfaFlow from "@/components/MfaFlow";
+import { MfaScreen } from "@/components/MfaParts";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -14,6 +17,7 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [mfaChallenge, setMfaChallenge] = useState(null);
   // Post-login destination (e.g. the MCP OAuth consent page sends users here
   // with returnTo so the grant flow can resume). Same-origin paths only.
   const returnTo = safeReturnTo();
@@ -23,7 +27,11 @@ export default function Login() {
     setError("");
     setLoading(true);
     try {
-      await base44.auth.loginViaEmailPassword(email, password);
+      const result = await loginWithMfa(email, password);
+      if (result.mfa_required) {
+        setMfaChallenge(result);
+        return;
+      }
       window.location.href = returnTo;
     } catch (err) {
       setError(err.message || "Invalid email or password");
@@ -32,9 +40,13 @@ export default function Login() {
     }
   };
 
-  const handleGoogle = () => {
-    base44.auth.loginWithProvider("google", returnTo);
+  const handleGoogle = async () => {
+    try { await signInWithProvider("google", returnTo); }
+    catch (err) { setError(err.message || 'Unable to sign in with Google'); }
   };
+
+  // The second sign-in step (authenticator app or text message) replaces the whole page.
+  if (mfaChallenge) return <MfaScreen><MfaFlow challenge={mfaChallenge} returnTo={returnTo} /></MfaScreen>;
 
   return (
     <AuthLayout

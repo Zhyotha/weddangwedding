@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Music2, Pause } from "lucide-react";
+import { Music2 } from "lucide-react";
 
 function Equalizer() {
   return (
@@ -10,10 +10,10 @@ function Equalizer() {
           className="w-[2px] rounded-full bg-current"
           animate={{ height: [5, 14, 7, 12, 5] }}
           transition={{
-            duration: 1.4 + index * 0.25,
+            duration: 1.6 + index * 0.25,
             repeat: Infinity,
             ease: "easeInOut",
-            delay: index * 0.12,
+            delay: index * 0.14,
           }}
         />
       ))}
@@ -23,19 +23,27 @@ function Equalizer() {
 
 export default function MusicToggle({ playing, onToggle }) {
   return (
-    <button
+    <motion.button
       type="button"
       onClick={onToggle}
       aria-label={playing ? "Matikan musik" : "Nyalakan musik"}
-      className="fixed bottom-6 right-5 z-40 flex min-h-[48px] items-center gap-3 rounded-full border border-border bg-background/85 px-4 py-2 shadow-[0_10px_30px_-18px_rgba(26,43,60,0.6)] backdrop-blur transition-colors hover:border-accent/60 sm:right-8"
+      className="fixed bottom-5 right-4 z-40 flex h-12 w-12 items-center justify-center rounded-full border border-accent/50 bg-background/90 text-[#4A2222] shadow-[0_16px_34px_-22px_rgba(74,34,34,0.9)] backdrop-blur transition-colors duration-500 hover:bg-accent/15 sm:right-6"
+      initial={{ opacity: 0, scale: 0.7 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.9, delay: 1.2, ease: [0.22, 1, 0.36, 1] }}
+      whileHover={{ scale: 1.06 }}
+      whileTap={{ scale: 0.94 }}
     >
-      <span className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground">
-        {playing ? <Equalizer /> : <Music2 size={13} />}
-      </span>
-      <span className="pr-1 text-[0.58rem] uppercase tracking-[0.32em] text-muted-foreground">
-        {playing ? "Musik" : "Putar"}
-      </span>
-      <Pause size={11} className={playing ? "text-muted-foreground" : "hidden"} />
-    </button>
+      {playing ? <Equalizer /> : <Music2 size={15} />}
+      {playing && (
+        <motion.span
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 rounded-full border border-accent/50"
+          animate={{ scale: [1, 1.35], opacity: [0.5, 0] }}
+          transition={{ duration: 2.6, repeat: Infinity, ease: "easeOut" }}
+        />
+      )}
+      <span className="sr-only">{playing ? "Musik menyala" : "Musik mati"}</span>
+    </motion.button>
   );
 }

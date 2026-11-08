@@ -1,3 +1,13 @@
+import cover from "@/img/cover.jpeg";
+import sampul from "@/img/sampul.jpeg";
+import berdua from "@/img/berdua.jpeg";
+import lokasi from "@/img/lokasi.jpeg";
+import pria1 from "@/img/pria1.jpeg";
+import pria2 from "@/img/pria2.jpeg";
+import wanita1 from "@/img/wanita1.jpeg";
+import wanita2 from "@/img/wanita2.jpeg";
+import momen from "@/img/IMG-20260914-WA0200.jpg";
+
 export const WEDDING = {
   groom: {
     name: "Romli",
@@ -41,16 +51,25 @@ export const WEDDING = {
     mapsUrl: "https://maps.app.goo.gl/FuGsKYYwbf2eD4Gj9?g_st=aw",
   },
   images: {
-    cover:
-      "/src/img/sampul.jpeg",
-    hands:
-      "/src/img/berdua.jpeg",
-    coast:
-      "/src/img/lokasi.jpeg",
+    cover,
+    hands: berdua,
+    coast: lokasi,
+    invitation: sampul,
   },
+  gallery: [
+    { src: sampul, alt: "Romli dan Andini" },
+    { src: cover, alt: "Potret Romli dan Andini" },
+    { src: berdua, alt: "Kebersamaan Romli dan Andini" },
+    { src: pria1, alt: "Romli" },
+    { src: wanita1, alt: "Andini" },
+    { src: pria2, alt: "Momen Romli" },
+    { src: wanita2, alt: "Momen Andini" },
+    { src: momen, alt: "Momen menjelang hari bahagia" },
+  ],
 };
 
 export const guestNameFromUrl = () => {
+  if (typeof window === "undefined") return "";
   const params = new URLSearchParams(window.location.search);
   const raw = params.get("to") || params.get("kepada") || "";
   return raw.replace(/\+/g, " ").trim();

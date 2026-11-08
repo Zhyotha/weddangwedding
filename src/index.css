@@ -4,78 +4,35 @@
 
 @layer base {
   :root {
-    --background: 43 37% 96%;
-    --foreground: 210 40% 17%;
-    --card: 0 0% 100%;
-    --card-foreground: 210 40% 17%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 210 40% 17%;
-    --primary: 210 40% 17%;
-    --primary-foreground: 43 37% 97%;
-    --secondary: 40 30% 92%;
-    --secondary-foreground: 210 40% 17%;
-    --muted: 40 24% 93%;
-    --muted-foreground: 210 14% 42%;
-    --accent: 39 48% 56%;
-    --accent-foreground: 210 45% 14%;
-    --destructive: 0 62% 45%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 47 24% 85%;
-    --input: 47 24% 85%;
-    --ring: 39 48% 56%;
-    --chart-1: 39 48% 56%;
-    --chart-2: 210 40% 17%;
-    --chart-3: 47 24% 70%;
-    --chart-4: 40 30% 80%;
-    --chart-5: 210 14% 55%;
+    --background: 40 47% 97%;
+    --foreground: 0 32% 20%;
+    --card: 39 44% 95%;
+    --card-foreground: 0 32% 20%;
+    --popover: 40 47% 97%;
+    --popover-foreground: 0 32% 20%;
+    --primary: 0 32% 22%;
+    --primary-foreground: 40 47% 97%;
+    --secondary: 30 32% 92%;
+    --secondary-foreground: 0 32% 20%;
+    --muted: 35 25% 92%;
+    --muted-foreground: 18 12% 40%;
+    --accent: 36 28% 52%;
+    --accent-foreground: 0 32% 16%;
+    --destructive: 0 55% 42%;
+    --destructive-foreground: 40 47% 97%;
+    --border: 33 22% 84%;
+    --input: 33 22% 84%;
+    --ring: 36 28% 52%;
+    --rose: 0 22% 63%;
+    --sage: 96 11% 50%;
+    --blush: 14 38% 90%;
+    --ink: 0 32% 22%;
     --radius: 0.25rem;
     --font-heading: "Cormorant Garamond", ui-serif, Georgia, serif;
     --font-body: "Jost", ui-sans-serif, system-ui, sans-serif;
     --font-display: "Cormorant Garamond", ui-serif, Georgia, serif;
-    --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-    --sidebar-background: 43 37% 96%;
-    --sidebar-foreground: 210 40% 17%;
-    --sidebar-primary: 210 40% 17%;
-    --sidebar-primary-foreground: 43 37% 97%;
-    --sidebar-accent: 40 30% 92%;
-    --sidebar-accent-foreground: 210 40% 17%;
-    --sidebar-border: 47 24% 85%;
-    --sidebar-ring: 39 48% 56%;
-  }
-
-  .dark {
-    --background: 210 40% 9%;
-    --foreground: 43 37% 96%;
-    --card: 210 40% 9%;
-    --card-foreground: 43 37% 96%;
-    --popover: 210 40% 9%;
-    --popover-foreground: 43 37% 96%;
-    --primary: 43 37% 96%;
-    --primary-foreground: 210 40% 12%;
-    --secondary: 210 30% 16%;
-    --secondary-foreground: 43 37% 96%;
-    --muted: 210 30% 16%;
-    --muted-foreground: 43 15% 65%;
-    --accent: 39 48% 56%;
-    --accent-foreground: 210 45% 12%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 43 37% 96%;
-    --border: 210 25% 20%;
-    --input: 210 25% 20%;
-    --ring: 39 48% 56%;
-    --chart-1: 39 48% 56%;
-    --chart-2: 43 37% 96%;
-    --chart-3: 210 25% 45%;
-    --chart-4: 40 30% 60%;
-    --chart-5: 210 14% 65%;
-    --sidebar-background: 210 40% 12%;
-    --sidebar-foreground: 43 37% 96%;
-    --sidebar-primary: 43 37% 96%;
-    --sidebar-primary-foreground: 210 40% 12%;
-    --sidebar-accent: 210 30% 16%;
-    --sidebar-accent-foreground: 43 37% 96%;
-    --sidebar-border: 210 25% 20%;
-    --sidebar-ring: 39 48% 56%;
+    --font-script: "Great Vibes", "Cormorant Garamond", cursive;
+    --font-mono: "Jost", ui-monospace, monospace;
   }
 }
 
@@ -84,11 +41,374 @@
     @apply border-border outline-ring/50;
   }
 
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 2rem;
+  }
+
   body {
     @apply bg-background text-foreground font-body antialiased;
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
 
   ::selection {
     background-color: hsl(var(--accent) / 0.25);
+  }
+
+  :focus-visible {
+    outline: 2px solid hsl(var(--accent));
+    outline-offset: 3px;
+  }
+}
+
+@layer utilities {
+  .paper-grain {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    mix-blend-mode: multiply;
+  }
+
+  .watercolor-wash {
+    background-image:
+      radial-gradient(60% 45% at 15% 8%, hsl(var(--blush) / 0.55) 0%, transparent 70%),
+      radial-gradient(50% 40% at 88% 20%, hsl(var(--sage) / 0.18) 0%, transparent 72%),
+      radial-gradient(70% 55% at 50% 100%, hsl(var(--rose) / 0.16) 0%, transparent 75%);
+  }
+
+  /* ---------------------------------------------------------------
+     The breeze engine — continuous botanical movement.
+     Each instance sets its own amplitude, reach, duration and delay.
+     --------------------------------------------------------------- */
+  .sway {
+    animation: breeze var(--sway-dur, 14s) cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite;
+    animation-delay: var(--sway-delay, 0s);
+    transform-origin: var(--sway-origin, 50% 100%);
+    will-change: transform;
+  }
+
+  .sway-reverse {
+    animation-name: breeze-reverse;
+  }
+
+  .float-y {
+    animation: float-y var(--float-dur, 16s) ease-in-out infinite;
+    animation-delay: var(--float-delay, 0s);
+    will-change: transform;
+  }
+
+  .breathe {
+    animation: breathe var(--breathe-dur, 9s) ease-in-out infinite;
+    animation-delay: var(--breathe-delay, 0s);
+  }
+
+  .leaf-fall {
+    animation: leaf-fall var(--fall-dur, 18s) linear infinite;
+    animation-delay: var(--fall-delay, 0s);
+    will-change: transform, opacity;
+  }
+
+  .petal-sway {
+    animation: petal-sway var(--petal-dur, 9s) ease-in-out infinite;
+    animation-delay: var(--petal-delay, 0s);
+  }
+
+  .ken-burns {
+    animation: ken-burns 30s ease-in-out infinite alternate;
+  }
+
+  .intro-sway {
+    animation: intro-sway 11s ease-in-out infinite;
+  }
+
+  .soft-float {
+    animation: soft-float 13s ease-in-out infinite;
+  }
+
+  .draw-line {
+    animation: draw-line 1.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .scroll-cue {
+    animation: scroll-cue 2.8s ease-in-out infinite;
+  }
+
+  /* A single diagonal shimmer that travels across the glyphs themselves. */
+  .text-shine {
+    background-image: linear-gradient(
+      112deg,
+      rgba(255, 255, 255, 0) 32%,
+      rgba(255, 255, 255, 0.72) 44%,
+      #fffdf6 50%,
+      rgba(246, 223, 176, 0.9) 56%,
+      rgba(255, 255, 255, 0) 68%
+    );
+    background-size: 300% 300%;
+    background-position: 175% 0%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: text-shine 2.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  /* Soft ink bloom behind form fields on focus. */
+  .field-bloom {
+    background-image: radial-gradient(
+      120% 140% at 0% 100%,
+      hsl(var(--blush) / 0.55) 0%,
+      transparent 62%
+    );
+    background-size: 220% 100%;
+    background-position: -60% 0%;
+    transition: background-position 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .field-bloom:focus {
+    background-position: 0% 0%;
+  }
+
+  /* ---------------------------------------------------------------
+     Section tones. Each one fades to transparent at both ends, so
+     neighbouring sections melt into each other instead of meeting
+     at a hard band. Never a pure white surface.
+     --------------------------------------------------------------- */
+  .tone-blush {
+    background-image: linear-gradient(
+      180deg,
+      hsl(var(--blush) / 0) 0%,
+      hsl(var(--blush) / 0.55) 16%,
+      hsl(var(--blush) / 0.55) 84%,
+      hsl(var(--blush) / 0) 100%
+    );
+  }
+
+  .tone-cream {
+    background-image: linear-gradient(
+      180deg,
+      hsl(var(--card) / 0) 0%,
+      hsl(var(--card) / 0.9) 17%,
+      hsl(var(--card) / 0.9) 83%,
+      hsl(var(--card) / 0) 100%
+    );
+  }
+
+  .tone-sage {
+    background-image: linear-gradient(
+      180deg,
+      hsl(var(--sage) / 0) 0%,
+      hsl(var(--sage) / 0.13) 18%,
+      hsl(var(--sage) / 0.13) 82%,
+      hsl(var(--sage) / 0) 100%
+    );
+  }
+
+  /* A warm bloom that breathes behind a card so it is never flat. */
+  .glow-warm {
+    background-image: radial-gradient(
+      85% 70% at 50% 112%,
+      hsl(var(--blush) / 0.8) 0%,
+      transparent 72%
+    );
+  }
+}
+
+@keyframes breeze {
+  0%,
+  100% {
+    transform: rotate(calc(var(--sway-amp, 1.2deg) * -1))
+      translate3d(calc(var(--sway-x, 3px) * -1), 0, 0);
+  }
+  38% {
+    transform: rotate(var(--sway-amp, 1.2deg)) translate3d(var(--sway-x, 3px), var(--sway-y, -3px), 0);
+  }
+  72% {
+    transform: rotate(calc(var(--sway-amp, 1.2deg) * 0.25))
+      translate3d(calc(var(--sway-x, 3px) * 0.3), 0, 0);
+  }
+}
+
+@keyframes breeze-reverse {
+  0%,
+  100% {
+    transform: rotate(var(--sway-amp, 1.2deg)) translate3d(var(--sway-x, 3px), 0, 0);
+  }
+  38% {
+    transform: rotate(calc(var(--sway-amp, 1.2deg) * -1))
+      translate3d(calc(var(--sway-x, 3px) * -1), 0, 0);
+  }
+  72% {
+    transform: rotate(calc(var(--sway-amp, 1.2deg) * -0.25))
+      translate3d(calc(var(--sway-x, 3px) * -0.3), 0, 0);
+  }
+}
+
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, calc(var(--float-reach, 8px) * -1), 0);
+  }
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 0.62;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.95;
+    transform: scale(1.03);
+  }
+}
+
+@keyframes leaf-fall {
+  0% {
+    transform: translate3d(0, -12vh, 0) rotate(0deg);
+    opacity: 0;
+  }
+  9% {
+    opacity: var(--fall-opacity, 0.75);
+  }
+  50% {
+    transform: translate3d(var(--fall-drift, 22px), 50vh, 0) rotate(150deg);
+  }
+  90% {
+    opacity: var(--fall-opacity, 0.75);
+  }
+  100% {
+    transform: translate3d(calc(var(--fall-drift, 22px) * -0.6), 110vh, 0) rotate(320deg);
+    opacity: 0;
+  }
+}
+
+@keyframes petal-sway {
+  0%,
+  100% {
+    transform: translate3d(calc(var(--petal-reach, 10px) * -1), 0, 0) rotate(-8deg);
+  }
+  50% {
+    transform: translate3d(var(--petal-reach, 10px), -6px, 0) rotate(10deg);
+  }
+}
+
+@keyframes ken-burns {
+  0% {
+    transform: scale(1.02) translate3d(0, 0, 0);
+  }
+  100% {
+    transform: scale(1.12) translate3d(0, -1.4%, 0);
+  }
+}
+
+@keyframes intro-sway {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(0, -9px, 0) rotate(0.5deg);
+  }
+}
+
+@keyframes soft-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -12px, 0);
+  }
+}
+
+@keyframes text-shine {
+  0% {
+    background-position: 175% 0%;
+    opacity: 0;
+  }
+  14% {
+    opacity: 1;
+  }
+  78% {
+    opacity: 1;
+  }
+  100% {
+    background-position: -75% 130%;
+    opacity: 0;
+  }
+}
+
+@keyframes draw-line {
+  from {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  to {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+@keyframes scroll-cue {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translateY(8px);
+    opacity: 1;
+  }
+}
+
+.wing-flap {
+  transform-box: fill-box;
+  animation: wing-flap 0.44s ease-in-out infinite;
+}
+
+.wing-flap-l {
+  transform-origin: 100% 50%;
+}
+
+.wing-flap-r {
+  transform-origin: 0% 50%;
+}
+
+@keyframes wing-flap {
+  0%,
+  100% {
+    transform: scaleX(1);
+  }
+  50% {
+    transform: scaleX(0.35);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .sway,
+  .sway-reverse,
+  .float-y,
+  .breathe,
+  .leaf-fall,
+  .petal-sway,
+  .ken-burns,
+  .intro-sway,
+  .soft-float,
+  .scroll-cue,
+  .wing-flap {
+    animation: none !important;
+  }
+
+  .text-shine {
+    animation: none !important;
+    opacity: 0;
   }
 }

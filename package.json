@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@base44/sdk": "^0.8.54",
-    "@base44/vite-plugin": "1.0.48",
+    "@base44/vite-plugin": "1.0.52",
     "@hello-pangea/dnd": "^17.0.0",
     "@hookform/resolvers": "^4.1.2",
     "@radix-ui/react-accordion": "^1.2.3",
@@ -97,13 +97,5 @@
     "tailwindcss": "^3.4.17",
     "typescript": "^5.8.2",
     "vite": "^8.2.0"
-  },
-  "description": "",
-  "main": "postcss.config.js",
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "allowScripts": {
-    "core-js@3.48.0": true
   }
 }

@@ -44,6 +44,10 @@ module.exports = {
   			border: 'hsl(var(--border))',
   			input: 'hsl(var(--input))',
   			ring: 'hsl(var(--ring))',
+  			rose: 'hsl(var(--rose))',
+  			sage: 'hsl(var(--sage))',
+  			blush: 'hsl(var(--blush))',
+  			ink: 'hsl(var(--ink))',
   			chart: {
   				'1': 'hsl(var(--chart-1))',
   				'2': 'hsl(var(--chart-2))',
@@ -66,6 +70,7 @@ module.exports = {
   			heading: ['var(--font-heading)'],
   			body: ['var(--font-body)'],
   			display: ['var(--font-display)'],
+  			script: ['var(--font-script)'],
   			mono: ['var(--font-mono)']
   		},
   		keyframes: {

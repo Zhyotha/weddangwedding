@@ -1,0 +1,60 @@
+import { HeadContent, Outlet, Scripts, createRootRoute } from "@tanstack/react-router";
+import { DefaultCatchBoundary } from "@/components/DefaultCatchBoundary";
+import { NotFound } from "@/components/NotFound";
+import { Toaster } from "@/components/ui/sonner";
+import { AuthProvider } from "@/lib/AuthContext";
+import { Base44Scripts } from "base44:document";
+import appCss from "@/index.css?url";
+
+export const Route = createRootRoute({
+  head: () => ({
+    meta: [
+      { charSet: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
+      { title: "Romli & Andini — Undangan Pernikahan" },
+      {
+        name: "description",
+        content:
+          "Undangan pernikahan Romli & Andini, Jumat 6 November 2026 di Tajinan, Malang. Sebuah undangan bergaya cat air Jawa klasik.",
+      },
+      { name: "theme-color", content: "#FDFBF7" },
+    ],
+    links: [
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Great+Vibes&family=Jost:wght@300;400;500&display=swap",
+      },
+      { rel: "stylesheet", href: appCss },
+    ],
+  }),
+  errorComponent: DefaultCatchBoundary,
+  notFoundComponent: () => <NotFound />,
+  shellComponent: RootDocument,
+  component: RootComponent,
+});
+
+function RootComponent() {
+  return (
+    <AuthProvider>
+      <Outlet />
+      <Toaster />
+    </AuthProvider>
+  );
+}
+
+function RootDocument({ children }) {
+  return (
+    <html lang="id">
+      <head>
+        <HeadContent />
+      </head>
+      <body data-react-root="true">
+        {children}
+        <Base44Scripts />
+        <Scripts />
+      </body>
+    </html>
+  );
+}

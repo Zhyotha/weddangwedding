@@ -20,8 +20,8 @@
     "message"
   ],
   "rls": {
-    "read": {},
     "create": {},
+    "read": {},
     "update": {
       "user_condition": {
         "role": "admin"

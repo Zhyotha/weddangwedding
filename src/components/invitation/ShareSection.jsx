@@ -1,19 +1,26 @@
 import { useEffect, useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Check, Copy, MessageCircle } from "lucide-react";
-import Reveal from "@/components/invitation/Reveal";
 import SectionLabel from "@/components/invitation/SectionLabel";
+import SectionGarden from "@/components/invitation/ornaments/SectionGarden";
+import { StaggerGroup, StaggerItem } from "@/components/invitation/motion/Stagger";
 import { WEDDING } from "@/lib/wedding";
 
 export default function ShareSection() {
+  const reduced = useReducedMotion();
   const [copied, setCopied] = useState(false);
+  const [shareUrl, setShareUrl] = useState("");
 
   useEffect(() => {
-    if (!copied) return;
+    setShareUrl(window.location.href);
+  }, []);
+
+  useEffect(() => {
+    if (!copied) return undefined;
     const id = setTimeout(() => setCopied(false), 2200);
     return () => clearTimeout(id);
   }, [copied]);
 
-  const shareUrl = window.location.href;
   const shareMessage = `Undangan pernikahan ${WEDDING.groom.name} & ${WEDDING.bride.name} — ${WEDDING.dateLabel}. ${shareUrl}`;
 
   const handleCopy = async () => {
@@ -26,35 +33,57 @@ export default function ShareSection() {
   };
 
   return (
-    <section className="border-t border-border/70 px-6 py-20 sm:px-10 lg:px-14 lg:py-24 xl:px-20">
-      <Reveal>
-        <SectionLabel>Bagikan momentmu</SectionLabel>
-        <p className="mt-7 max-w-md text-[0.92rem] leading-[1.95] text-foreground/75">
-          Opsional — bagikan undangan ini kepada keluarga dan sahabat yang mungkin
-          belum kami kabari.
-        </p>
+    <section className="relative overflow-hidden px-5 py-20 sm:px-8 sm:py-24">
+      <SectionGarden seed={10} tone="sage" accent="rose" vines={false} opacity={0.3} />
+      <StaggerGroup className="relative z-10 mx-auto max-w-xl text-center" stagger={0.2} amount={0.4}>
+        <StaggerItem>
+          <SectionLabel align="center">Bagikan undangan</SectionLabel>
+        </StaggerItem>
+        <StaggerItem>
+          <p className="mx-auto mt-6 max-w-sm text-[0.95rem] leading-[1.9] text-foreground/70">
+            Opsional — bagikan undangan ini kepada keluarga dan sahabat yang mungkin
+            belum kami kabari.
+          </p>
+        </StaggerItem>
 
-        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-          <button
-            type="button"
-            onClick={handleCopy}
-            className="inline-flex min-h-[48px] items-center justify-center gap-2.5 border border-foreground/15 px-6 text-[0.58rem] uppercase tracking-[0.28em] text-foreground transition-colors duration-300 hover:border-accent hover:text-accent"
-          >
-            {copied ? <Check size={13} /> : <Copy size={13} />}
-            {copied ? "Tautan tersalin" : "Salin tautan"}
-          </button>
+        <StaggerItem variant="pop">
+          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+            <motion.button
+              type="button"
+              onClick={handleCopy}
+              whileHover={reduced ? undefined : { y: -2 }}
+              whileTap={reduced ? undefined : { scale: 0.97 }}
+              className="inline-flex min-h-[48px] items-center justify-center gap-2.5 rounded-full border border-accent/50 px-6 text-[0.58rem] uppercase tracking-[0.28em] text-[#4A2222] transition-colors duration-500 hover:border-accent hover:bg-accent/10"
+            >
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.span
+                  key={copied ? "check" : "copy"}
+                  initial={{ scale: 0.4, opacity: 0, rotate: -25 }}
+                  animate={{ scale: 1, opacity: 1, rotate: 0 }}
+                  exit={{ scale: 0.4, opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="flex"
+                >
+                  {copied ? <Check size={13} /> : <Copy size={13} />}
+                </motion.span>
+              </AnimatePresence>
+              {copied ? "Tautan tersalin" : "Salin tautan"}
+            </motion.button>
 
-          <a
-            href={`https://wa.me/?text=${encodeURIComponent(shareMessage)}`}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex min-h-[48px] items-center justify-center gap-2.5 bg-primary px-6 text-[0.58rem] uppercase tracking-[0.28em] text-primary-foreground transition-opacity duration-300 hover:opacity-90"
-          >
-            <MessageCircle size={13} />
-            WhatsApp
-          </a>
-        </div>
-      </Reveal>
+            <motion.a
+              href={`https://wa.me/?text=${encodeURIComponent(shareMessage)}`}
+              target="_blank"
+              rel="noreferrer"
+              whileHover={reduced ? undefined : { y: -2 }}
+              whileTap={reduced ? undefined : { scale: 0.97 }}
+              className="inline-flex min-h-[48px] items-center justify-center gap-2.5 rounded-full bg-[#4A2222] px-6 text-[0.58rem] uppercase tracking-[0.28em] text-[#FDFBF7] transition-opacity duration-500 hover:opacity-90"
+            >
+              <MessageCircle size={13} />
+              WhatsApp
+            </motion.a>
+          </div>
+        </StaggerItem>
+      </StaggerGroup>
     </section>
   );
 }
