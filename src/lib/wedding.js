@@ -60,10 +60,6 @@ export const WEDDING = {
     { src: sampul, alt: "Romli dan Andini" },
     { src: cover, alt: "Potret Romli dan Andini" },
     { src: berdua, alt: "Kebersamaan Romli dan Andini" },
-    { src: pria1, alt: "Romli" },
-    { src: wanita1, alt: "Andini" },
-    { src: pria2, alt: "Momen Romli" },
-    { src: wanita2, alt: "Momen Andini" },
     { src: momen, alt: "Momen menjelang hari bahagia" },
   ],
 };
