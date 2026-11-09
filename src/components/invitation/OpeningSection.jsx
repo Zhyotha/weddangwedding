@@ -102,15 +102,8 @@ export default function OpeningSection() {
         <motion.div
           variants={item}
           transition={{ duration: 1.2, ease: EASE }}
-          className="mt-12 border-y border-accent/25 px-5 py-7"
+        
         >
-          <p className="text-[0.55rem] uppercase tracking-[0.42em] text-foreground/45">Kepada</p>
-          <p className="mt-3 font-display text-xl italic text-foreground">
-            {guest || "Bapak / Ibu / Saudara / i"}
-          </p>
-          <p className="mt-2 text-[0.8rem] leading-relaxed text-foreground/55">
-            Tanpa mengurangi rasa hormat, kami mengundang Anda untuk hadir di hari bahagia kami.
-          </p>
         </motion.div>
 
         <motion.div

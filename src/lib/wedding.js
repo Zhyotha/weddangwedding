@@ -24,7 +24,7 @@ export const WEDDING = {
     mother: "Ibu Antik Suifiyah",
   },
   initials: "R & A",
-  dateLabel: "Jumat, 6 Desember 2026",
+  dateLabel: "Jumat, 7 Desember 2026",
   dateShort: "06 · 12 · 2026",
   region: "Tajinan, Malang",
   countdownTarget: "2026-12-06T09:00:00+07:00",

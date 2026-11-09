@@ -19,8 +19,7 @@ export default function GreetingSection() {
         </StaggerItem>
         <StaggerItem>
           <p className="mx-auto mt-6 max-w-md text-[0.98rem] leading-[1.95] text-foreground/75">
-            Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara untuk hadir
-            di hari pernikahan kami.
+            memohon rahmat & ridho Allah SWT, kamı mengundang bapak/lbu/saudara/i untuk hadir pada pernıkahan kami.
           </p>
         </StaggerItem>
         <StaggerItem variant="fade">
