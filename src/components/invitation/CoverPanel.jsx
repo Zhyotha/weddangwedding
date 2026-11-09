@@ -15,12 +15,21 @@ export default function CoverPanel() {
 
       <div className="absolute inset-x-0 bottom-0 px-12 pb-14">
         <p className="text-[0.55rem] uppercase tracking-[0.45em] text-[#d9be85]">
-          The Wedding Of
+          The Wedding 000f
         </p>
-        <p className="mt-4 font-display text-6xl font-light leading-none text-white">
-          {WEDDING.groom.initial}{" "}
-          <span className="text-[#d9be85]">&</span> {WEDDING.bride.initial}
-        </p>
+        <div className="mt-4 flex w-full max-w-full flex-col items-center px-4 text-center font-display font-light text-white">
+          <span className="w-full text-[clamp(1.5rem,4.5vw,2.5rem)] leading-tight">
+            {WEDDING.groom.initial}
+          </span>
+
+          <span className="my-2 text-2xl leading-none text-[#d9be85]">
+            &
+          </span>
+
+          <span className="w-full text-[clamp(1.5rem,4.5vw,2.5rem)] leading-tight">
+            {WEDDING.bride.initial}
+          </span>
+        </div>
         <div className="mt-6 h-px w-16 bg-white/30" />
         <p className="mt-5 text-[0.68rem] uppercase tracking-[0.32em] text-white/80">
           {WEDDING.dateLabel}
@@ -31,7 +40,7 @@ export default function CoverPanel() {
       </div>
 
       <p className="absolute bottom-14 right-10 rotate-180 text-[0.52rem] uppercase tracking-[0.5em] text-white/40 [writing-mode:vertical-rl]">
-        Scroll ke bawah
+        Guling ke bawah
       </p>
     </aside>
   );

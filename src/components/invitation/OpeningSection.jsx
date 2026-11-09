@@ -42,10 +42,18 @@ export default function OpeningSection() {
           transition={{ duration: 1.3, ease: EASE }}
           className="relative mt-5"
         >
-          <h1 className="font-script text-[clamp(3.4rem,16vw,5.2rem)] leading-[1.02] text-[#4A2222]">
-            {WEDDING.groom.name}
-            <span className="mx-2 font-display text-3xl italic text-accent">&amp;</span>
-            {WEDDING.bride.name}
+          <h1 className="flex flex-col items-center text-center font-script font-normal leading-tight text-[#4A2222]">
+            <span className="max-w-full text-[clamp(2.5rem,9vw,4.5rem)]">
+              {WEDDING.groom.name}
+            </span>
+
+            <span className="my-2 font-display text-3xl italic text-accent">
+              &amp;
+            </span>
+
+            <span className="max-w-full text-[clamp(2.5rem,9vw,4.5rem)]">
+              {WEDDING.bride.name}
+            </span>
           </h1>
           <Sheen delay={2.4} repeatDelay={9} />
         </motion.div>
