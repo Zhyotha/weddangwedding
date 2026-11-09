@@ -3,7 +3,7 @@ import { Image } from "@/components/ui/image";
 import { GoldRule } from "@/components/invitation/Ornaments";
 import SectionFlorals from "@/components/invitation/ornaments/Flora";
 import Parallax from "@/components/invitation/motion/Parallax";
-import Sheen from "@/components/invitation/motion/Sheen";
+import { SheenText } from "@/components/invitation/motion/Sheen";
 import { EASE } from "@/components/invitation/motion/Reveal";
 import useGuestName from "@/hooks/useGuestName";
 import { WEDDING } from "@/lib/wedding";
@@ -44,7 +44,9 @@ export default function OpeningSection() {
         >
           <h1 className="flex flex-col items-center text-center font-script font-normal leading-tight text-[#4A2222]">
             <span className="max-w-full text-[clamp(2.5rem,9vw,4.5rem)]">
-              {WEDDING.groom.name}
+              <SheenText delay={2.4}>
+                {WEDDING.groom.name}
+              </SheenText>
             </span>
 
             <span className="my-2 font-display text-3xl italic text-accent">
@@ -52,11 +54,12 @@ export default function OpeningSection() {
             </span>
 
             <span className="max-w-full text-[clamp(2.5rem,9vw,4.5rem)]">
-              {WEDDING.bride.name}
+              <SheenText delay={3.0}>
+                {WEDDING.bride.name}
+              </SheenText>
             </span>
           </h1>
-          <Sheen delay={2.4} repeatDelay={9} />
-        </motion.div>
+          </motion.div>
 
         <motion.div variants={item} transition={{ duration: 1.1, ease: EASE }}>
           <GoldRule className="mt-7" />
