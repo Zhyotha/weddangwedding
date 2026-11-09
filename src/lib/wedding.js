@@ -27,7 +27,7 @@ export const WEDDING = {
   dateLabel: "Senin, 7 Desember 2026",
   dateShort: "7 · 12 · 2026",
   region: "Tajinan, Malang",
-  countdownTarget: "2026-12-06T09:00:00+07:00",
+  countdownTarget: "2026-12-07T09:00:00+07:00",
   verse:
     "Di antara tanda-tanda (kebesaran)-Nya ialah bahwa Dia menciptakan pasangan-pasangan untukmu dari (jenis) dirimu sendiri agar kamu merasa tenteram kepadanya. Dia menjadikan di antaramu rasa cinta dan kasih sayang. Sesungguhnya pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir.",
   verseSource: "Surah Ar-Rum Ayat 21",
