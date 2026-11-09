@@ -10,20 +10,20 @@ import momen from "@/img/IMG-20260914-WA0200.jpg";
 
 export const WEDDING = {
   groom: {
-    name: "Romli",
-    initial: "R",
-    order: "Putra dari",
-    father: "Bapak Solikin",
-    mother: "Ibu Henik Yunaita",
-  },
-  bride: {
-    name: "Andini",
+    name: "Andini Putri Amalia",
     initial: "A",
     order: "Putri dari",
     father: "Bapak Hermanto",
     mother: "Ibu Antik Suifiyah",
   },
-  initials: "R & A",
+  bride: {
+    name: "Moch.Romli",
+    initial: "R",
+    order: "Putra dari",
+    father: "Bapak Solikin",
+    mother: "Ibu Henik Yunaita",
+  },
+  initials: "A & R",
   dateLabel: "Jumat, 7 Desember 2026",
   dateShort: "06 · 12 · 2026",
   region: "Tajinan, Malang",
@@ -57,9 +57,9 @@ export const WEDDING = {
     invitation: sampul,
   },
   gallery: [
-    { src: sampul, alt: "Romli dan Andini" },
-    { src: cover, alt: "Potret Romli dan Andini" },
-    { src: berdua, alt: "Kebersamaan Romli dan Andini" },
+    { src: sampul, alt: "Andini dan Romli" },
+    { src: cover, alt: "Potret Andini dan Romli" },
+    { src: berdua, alt: "Kebersamaan Andini dan Romli" },
     { src: momen, alt: "Momen menjelang hari bahagia" },
   ],
 };
