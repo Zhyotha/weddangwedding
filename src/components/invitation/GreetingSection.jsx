@@ -1,16 +1,14 @@
 import SectionLabel from "@/components/invitation/SectionLabel";
 import Sheen from "@/components/invitation/motion/Sheen";
-import { Butterfly } from "@/components/invitation/motion/Ambient";
 import { StaggerGroup, StaggerItem } from "@/components/invitation/motion/Stagger";
-import SectionGarden from "@/components/invitation/ornaments/SectionGarden";
+import SectionFlorals from "@/components/invitation/ornaments/Flora";
 
 export default function GreetingSection() {
   return (
-    <section className="relative overflow-hidden px-5 pb-20 sm:px-8 sm:pb-24">
-      <SectionGarden seed={2} tone="rose" accent="sage" vines={false} opacity={0.36} />
-      <Butterfly className="right-[14%] top-6" size={14} duration={28} delay={1.5} range={-24} />
+    <section className="relative px-5 pb-20 sm:px-8 sm:pb-24">
+      <SectionFlorals variant="greeting" />
 
-      <StaggerGroup className="relative mx-auto max-w-xl text-center" stagger={0.2} amount={0.4}>
+      <StaggerGroup className="relative z-10 mx-auto max-w-xl text-center" stagger={0.2} amount={0.4}>
         <StaggerItem>
           <SectionLabel align="center">Undangan</SectionLabel>
         </StaggerItem>
@@ -24,6 +22,17 @@ export default function GreetingSection() {
             Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara untuk hadir
             di hari pernikahan kami.
           </p>
+        </StaggerItem>
+        <StaggerItem variant="fade">
+          <div className="mx-auto mt-7 flex items-center justify-center gap-2.5 opacity-60">
+            <span className="h-px w-7 bg-accent/50" />
+            <span className="block h-2.5 w-2.5 rotate-45 border border-accent/60" />
+            <span className="font-display text-[0.6rem] uppercase tracking-[0.3em] text-foreground/45">
+              R &amp; A
+            </span>
+            <span className="block h-2.5 w-2.5 rotate-45 border border-accent/60" />
+            <span className="h-px w-7 bg-accent/50" />
+          </div>
         </StaggerItem>
         <StaggerItem variant="pop">
           <div className="relative mx-auto mt-6 inline-block">

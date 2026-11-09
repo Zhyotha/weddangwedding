@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { MapPin } from "lucide-react";
 import { Image } from "@/components/ui/image";
 import SectionLabel from "@/components/invitation/SectionLabel";
-import SectionGarden from "@/components/invitation/ornaments/SectionGarden";
+import SectionFlorals from "@/components/invitation/ornaments/Flora";
 import Parallax from "@/components/invitation/motion/Parallax";
 import Reveal from "@/components/invitation/motion/Reveal";
 import { StaggerGroup, StaggerItem } from "@/components/invitation/motion/Stagger";
@@ -10,8 +10,8 @@ import { WEDDING } from "@/lib/wedding";
 
 export default function VenueSection() {
   return (
-    <section id="lokasi" className="tone-cream relative overflow-hidden px-5 py-20 sm:px-8 sm:py-24">
-      <SectionGarden seed={6} tone="sage" accent="rose" opacity={0.4} />
+    <section id="lokasi" className="tone-cream relative px-5 py-20 sm:px-8 sm:py-24">
+      <SectionFlorals variant="venue" />
 
       <div className="relative z-10 mx-auto max-w-xl">
         <Reveal variant="soft" duration={1.35}>

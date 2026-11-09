@@ -5,8 +5,8 @@ export const getServerInfo = createServerFn({ method: "GET" }).handler(async () 
 }));
 
 /**
- * Guest-facing RSVP totals. RSVP rows hold guests' names, so they stay
- * admin-only; this public endpoint returns aggregate numbers only.
+ * Public RSVP totals. RSVP rows hold guests' names, so they stay admin-only;
+ * this endpoint returns aggregate numbers only.
  */
 export const getRsvpSummary = createServerFn({ method: "GET" }).handler(async ({ context }) => {
   const base44 = context.getBase44();

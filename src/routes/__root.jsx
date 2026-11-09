@@ -44,12 +44,14 @@ function RootComponent() {
   );
 }
 
+// The document. There is no index.html: the server renders <html> from here.
 function RootDocument({ children }) {
   return (
     <html lang="id">
       <head>
         <HeadContent />
       </head>
+      {/* data-react-root: the builder's preview bridge looks for #root and falls back to this. */}
       <body data-react-root="true">
         {children}
         <Base44Scripts />

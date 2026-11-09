@@ -1,7 +1,6 @@
 import { Image } from "@/components/ui/image";
 import SectionLabel from "@/components/invitation/SectionLabel";
-import SectionGarden from "@/components/invitation/ornaments/SectionGarden";
-import FallingPetals from "@/components/invitation/motion/Ambient";
+import SectionFlorals from "@/components/invitation/ornaments/Flora";
 import Parallax from "@/components/invitation/motion/Parallax";
 import Reveal from "@/components/invitation/motion/Reveal";
 import Sway from "@/components/invitation/motion/Sway";
@@ -34,12 +33,11 @@ export default function CoupleSection() {
   return (
     <section
       id="mempelai"
-      className="tone-blush relative overflow-hidden px-5 py-20 sm:px-8 sm:py-24"
+      className="tone-blush relative px-5 py-20 sm:px-8 sm:py-24"
     >
-      <SectionGarden seed={3} tone="sage" accent="rose" opacity={0.42} />
-      <FallingPetals count={5} seed={23} leafRatio={0.6} opacity={0.5} />
+      <SectionFlorals variant="couple" />
 
-      <div className="relative mx-auto max-w-xl">
+      <div className="relative z-10 mx-auto max-w-xl">
         <Reveal variant="soft" duration={1.4}>
           <div className="relative border border-accent/30 p-2.5">
             <div className="relative overflow-hidden">

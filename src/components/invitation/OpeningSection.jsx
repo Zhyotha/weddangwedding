@@ -1,7 +1,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { Image } from "@/components/ui/image";
-import { CornerFloral, GoldRule } from "@/components/invitation/Ornaments";
-import FallingPetals, { Butterfly } from "@/components/invitation/motion/Ambient";
+import { GoldRule } from "@/components/invitation/Ornaments";
+import SectionFlorals from "@/components/invitation/ornaments/Flora";
 import Parallax from "@/components/invitation/motion/Parallax";
 import Sheen from "@/components/invitation/motion/Sheen";
 import { EASE } from "@/components/invitation/motion/Reveal";
@@ -20,36 +20,11 @@ export default function OpeningSection() {
   const item = reduced ? still : rise;
 
   return (
-    <section id="undangan" className="relative overflow-hidden px-5 pb-20 pt-20 sm:px-8 sm:pt-24">
-      <CornerFloral
-        className="-left-24 -top-24 h-72 w-72 sm:h-96 sm:w-96"
-        opacity={0.32}
-        duration={24}
-        amplitude={2}
-        float={10}
-      />
-      <CornerFloral
-        className="-right-20 top-8 h-56 w-56 sm:h-72 sm:w-72"
-        flipX
-        opacity={0.42}
-        duration={17}
-        amplitude={1.5}
-        delay={1.4}
-        float={6}
-      />
-      <CornerFloral
-        className="-left-12 bottom-6 h-44 w-44 sm:h-52 sm:w-52"
-        flipY
-        opacity={0.3}
-        duration={20}
-        amplitude={1.2}
-        delay={2.2}
-      />
-      <FallingPetals count={7} seed={3} leafRatio={0.3} opacity={0.6} />
-      <Butterfly className="left-[16%] top-[24%]" size={15} duration={26} delay={3} range={30} />
+    <section id="undangan" className="relative px-5 pb-20 pt-20 sm:px-8 sm:pt-24">
+      <SectionFlorals variant="hero" />
 
       <motion.div
-        className="relative mx-auto max-w-xl text-center"
+        className="relative z-10 mx-auto max-w-xl text-center"
         initial="hidden"
         animate="show"
         variants={{ hidden: {}, show: { transition: { staggerChildren: 0.16, delayChildren: 0.15 } } }}

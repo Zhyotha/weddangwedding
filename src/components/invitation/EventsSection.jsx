@@ -1,8 +1,8 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { Gem, Heart } from "lucide-react";
 import SectionLabel from "@/components/invitation/SectionLabel";
-import { Sprig } from "@/components/invitation/ornaments/Botanicals";
-import SectionGarden from "@/components/invitation/ornaments/SectionGarden";
+import { FloralAccent } from "@/components/invitation/Ornaments";
+import SectionFlorals from "@/components/invitation/ornaments/Flora";
 import { EASE } from "@/components/invitation/motion/Reveal";
 import Sway from "@/components/invitation/motion/Sway";
 import { StaggerGroup, StaggerItem } from "@/components/invitation/motion/Stagger";
@@ -16,11 +16,11 @@ export default function EventsSection() {
   return (
     <section
       id="acara"
-      className="tone-blush relative overflow-hidden px-5 py-20 sm:px-8 sm:py-24"
+      className="tone-blush relative px-5 py-20 sm:px-8 sm:py-24"
     >
-      <SectionGarden seed={4} tone="sage" accent="blush" opacity={0.36} />
+      <SectionFlorals variant="events" />
 
-      <div className="relative mx-auto max-w-xl">
+      <div className="relative z-10 mx-auto max-w-xl">
         <StaggerGroup className="text-center" stagger={0.18} amount={0.3}>
           <StaggerItem>
             <SectionLabel align="center">Rangkaian Acara</SectionLabel>
@@ -48,21 +48,14 @@ export default function EventsSection() {
                   whileHover={reduced ? undefined : { y: -4 }}
                   transition={{ duration: 0.45, ease: EASE }}
                 >
-                  <span
-                    aria-hidden="true"
-                    className="pointer-events-none absolute -right-1 -top-3 h-12 w-12 opacity-30"
-                  >
-                    <Sway
-                      className="h-full w-full"
-                      duration={12 + index * 3}
-                      amplitude={6}
-                      shift={2}
-                      delay={index * 1.3}
-                      origin="72% 100%"
-                    >
-                      <Sprig tone={index % 2 === 0 ? "sage" : "rose"} className="h-full w-full" />
-                    </Sway>
-                  </span>
+                  <FloralAccent
+                    className="-right-4 -top-5 h-16 w-12"
+                    art={index % 2 === 0 ? "sprig" : "blossom"}
+                    tone={index % 2 === 0 ? "sage" : "rose"}
+                    accent={index % 2 === 0 ? "rose" : "sage"}
+                    opacity={0.62}
+                    duration={12 + index * 3}
+                  />
                   <span className="absolute left-2.5 top-2.5 h-4 w-4 border-l border-t border-accent/40" />
                   <span className="absolute bottom-2.5 right-2.5 h-4 w-4 border-b border-r border-accent/40" />
 

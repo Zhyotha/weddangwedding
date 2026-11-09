@@ -12,7 +12,7 @@ function seeded(seed) {
 function Petal({ tone }) {
   return (
     <svg viewBox="0 0 14 12" className="block h-auto w-full" aria-hidden="true">
-      <path d="M7 0 C 12 2.5, 13.5 8, 7 12 C 0.5 8, 2 2.5, 7 0 Z" fill={tone} opacity="0.7" />
+      <path d="M7 0 C 12 2.5, 13.5 8, 7 12 C 0.5 8, 2 2.5, 7 0 Z" fill={tone} opacity="0.78" />
     </svg>
   );
 }
@@ -20,7 +20,7 @@ function Petal({ tone }) {
 function Leaf({ tone }) {
   return (
     <svg viewBox="0 0 12 18" className="block h-auto w-full" aria-hidden="true">
-      <path d="M6 0 C 11 4, 12.4 11, 6 18 C -0.4 11, 1 4, 6 0 Z" fill={tone} opacity="0.72" />
+      <path d="M6 0 C 11 4, 12.4 11, 6 18 C -0.4 11, 1 4, 6 0 Z" fill={tone} opacity="0.8" />
       <path d="M6 2.5 L 6 15.5" stroke="#6B5334" strokeWidth="0.5" opacity="0.4" />
     </svg>
   );
@@ -110,12 +110,12 @@ export function Butterfly({ className = "", size = 18, duration = 26, delay = 0,
     >
       <svg viewBox="0 0 26 22" className="h-auto w-full" aria-hidden="true">
         <g className="wing-flap wing-flap-l">
-          <path d="M13 11 C 7 1, 0 3, 1.5 9.5 C 2.8 15, 8 16, 13 12 Z" fill="#B98D7B" opacity="0.85" />
-          <path d="M13 12 C 9 18, 3 19, 3 15 C 3.2 12.6, 7 12, 13 13 Z" fill="#C9A18C" opacity="0.8" />
+          <path d="M13 11 C 7 1, 0 3, 1.5 9.5 C 2.8 15, 8 16, 13 12 Z" fill="#B98D7B" opacity="0.9" />
+          <path d="M13 12 C 9 18, 3 19, 3 15 C 3.2 12.6, 7 12, 13 13 Z" fill="#C9A18C" opacity="0.85" />
         </g>
         <g className="wing-flap wing-flap-r">
-          <path d="M13 11 C 19 1, 26 3, 24.5 9.5 C 23.2 15, 18 16, 13 12 Z" fill="#B98D7B" opacity="0.85" />
-          <path d="M13 12 C 17 18, 23 19, 23 15 C 22.8 12.6, 19 12, 13 13 Z" fill="#C9A18C" opacity="0.8" />
+          <path d="M13 11 C 19 1, 26 3, 24.5 9.5 C 23.2 15, 18 16, 13 12 Z" fill="#B98D7B" opacity="0.9" />
+          <path d="M13 12 C 17 18, 23 19, 23 15 C 22.8 12.6, 19 12, 13 13 Z" fill="#C9A18C" opacity="0.85" />
         </g>
         <path d="M13 7 C 13.8 11, 13.4 15, 13 17.5" stroke="#6B4A34" strokeWidth="1" strokeLinecap="round" opacity="0.8" />
       </svg>

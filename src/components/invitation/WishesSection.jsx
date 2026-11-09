@@ -4,9 +4,8 @@ import moment from "moment";
 import "moment/locale/id";
 import { base44 } from "@/api/base44Client";
 import SectionLabel from "@/components/invitation/SectionLabel";
-import { Sprig } from "@/components/invitation/ornaments/Botanicals";
-import SectionGarden from "@/components/invitation/ornaments/SectionGarden";
-import Sway from "@/components/invitation/motion/Sway";
+import { FloralAccent } from "@/components/invitation/Ornaments";
+import SectionFlorals from "@/components/invitation/ornaments/Flora";
 import Reveal, { EASE } from "@/components/invitation/motion/Reveal";
 import { StaggerGroup, StaggerItem } from "@/components/invitation/motion/Stagger";
 import useGuestName from "@/hooks/useGuestName";
@@ -63,8 +62,8 @@ export default function WishesSection() {
   };
 
   return (
-    <section id="ucapan" className="tone-blush relative overflow-hidden px-5 py-20 sm:px-8 sm:py-24">
-      <SectionGarden seed={9} tone="rose" accent="sage" opacity={0.34} />
+    <section id="ucapan" className="tone-blush relative px-5 py-20 sm:px-8 sm:py-24">
+      <SectionFlorals variant="wishes" />
 
       <div className="relative z-10 mx-auto max-w-xl">
         <StaggerGroup className="text-center" stagger={0.18} amount={0.35}>
@@ -155,25 +154,16 @@ export default function WishesSection() {
                     viewport={{ once: true, amount: 0.25 }}
                     exit={{ opacity: 0, scale: 0.98 }}
                     transition={{ duration: 0.8, ease: EASE, delay: index < 5 ? index * 0.07 : 0 }}
-                    className={`relative overflow-hidden border border-accent/20 px-5 py-5 ${TINTS[index % TINTS.length]}`}
+                    className={`relative overflow-visible border border-accent/20 px-5 py-5 ${TINTS[index % TINTS.length]}`}
                   >
-                    <span
-                      aria-hidden="true"
-                      className="pointer-events-none absolute -right-2 -top-4 h-14 w-14 opacity-25"
-                    >
-                      <Sway
-                        className="h-full w-full"
-                        duration={13 + (index % 4) * 3}
-                        amplitude={6}
-                        delay={index * 0.7}
-                        origin="70% 100%"
-                      >
-                        <Sprig
-                          tone={index % 2 === 0 ? "rose" : "sage"}
-                          className="h-full w-full"
-                        />
-                      </Sway>
-                    </span>
+                    <FloralAccent
+                      className="-right-3 -top-4 h-14 w-12"
+                      art={index % 3 === 0 ? "blossom" : "sprig"}
+                      tone={index % 2 === 0 ? "rose" : "sage"}
+                      accent={index % 2 === 0 ? "sage" : "rose"}
+                      opacity={0.58}
+                      duration={13 + (index % 4) * 3}
+                    />
                     <div className="flex items-baseline justify-between gap-3">
                       <p className="font-display text-[1.05rem] text-[#4A2222]">{wish.guest_name}</p>
                       <p className="text-[0.52rem] uppercase tracking-[0.22em] text-foreground/40">

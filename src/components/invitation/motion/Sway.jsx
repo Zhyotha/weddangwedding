@@ -16,7 +16,7 @@ export default function Sway({
   delay = 0,
   origin = "50% 100%",
   reverse = false,
-  float = 0,
+  float = 4,
   floatDuration = 18,
   style,
 }) {

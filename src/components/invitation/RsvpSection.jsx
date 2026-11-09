@@ -3,13 +3,13 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Heart } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import SectionLabel from "@/components/invitation/SectionLabel";
-import { Sprig } from "@/components/invitation/ornaments/Botanicals";
-import SectionGarden from "@/components/invitation/ornaments/SectionGarden";
-import Sway from "@/components/invitation/motion/Sway";
+import { FloralAccent } from "@/components/invitation/Ornaments";
+import SectionFlorals from "@/components/invitation/ornaments/Flora";
 import { EASE } from "@/components/invitation/motion/Reveal";
 import Reveal from "@/components/invitation/motion/Reveal";
 import { StaggerGroup, StaggerItem } from "@/components/invitation/motion/Stagger";
 import useGuestName from "@/hooks/useGuestName";
+import { getRsvpSummary } from "@/lib/server-fns";
 
 const COUNTS = [1, 2, 3, 4, 5];
 
@@ -29,9 +29,8 @@ export default function RsvpSection() {
   }, [urlGuest]);
 
   const loadSummary = () => {
-    base44.functions
-      .invoke("rsvpSummary", {})
-      .then((response) => setSummary(response?.data ?? null))
+    getRsvpSummary()
+      .then((data) => setSummary(data ?? null))
       .catch(() => setSummary(null));
   };
 
@@ -63,8 +62,8 @@ export default function RsvpSection() {
   };
 
   return (
-    <section id="rsvp" className="tone-cream relative overflow-hidden px-5 py-20 sm:px-8 sm:py-24">
-      <SectionGarden seed={8} tone="sage" accent="blush" opacity={0.32} />
+    <section id="rsvp" className="tone-cream relative px-5 py-20 sm:px-8 sm:py-24">
+      <SectionFlorals variant="rsvp" />
 
       <div className="relative z-10 mx-auto max-w-xl">
         <StaggerGroup className="text-center" stagger={0.18} amount={0.35}>
@@ -81,11 +80,19 @@ export default function RsvpSection() {
 
         <Reveal delay={0.1} className="mt-10" variant="pop" duration={1.2}>
           <div className="relative border border-accent/35 bg-card/60 px-5 py-8 sm:px-8 sm:py-10">
-            <span className="pointer-events-none absolute -bottom-4 -left-3 h-16 w-16 opacity-25">
-              <Sway className="h-full w-full" duration={15} amplitude={5} origin="30% 100%" float={3}>
-                <Sprig tone="rose" className="h-full w-full -scale-x-100" />
-              </Sway>
-            </span>
+            <FloralAccent
+              className="-right-4 -top-5 h-16 w-14 sm:h-20 sm:w-16"
+              art="blossom"
+              flipX
+              opacity={0.66}
+              duration={19}
+            />
+            <FloralAccent
+              className="-bottom-4 -left-3 h-14 w-12 sm:h-16 sm:w-14"
+              flipY
+              opacity={0.6}
+              duration={15}
+            />
             <span className="absolute left-2.5 top-2.5 h-4 w-4 border-l border-t border-accent/40" />
             <span className="absolute bottom-2.5 right-2.5 h-4 w-4 border-b border-r border-accent/40" />
 

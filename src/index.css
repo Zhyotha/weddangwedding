@@ -119,23 +119,10 @@
     animation: ken-burns 30s ease-in-out infinite alternate;
   }
 
-  .intro-sway {
-    animation: intro-sway 11s ease-in-out infinite;
-  }
-
-  .soft-float {
-    animation: soft-float 13s ease-in-out infinite;
-  }
-
-  .draw-line {
-    animation: draw-line 1.5s cubic-bezier(0.22, 1, 0.36, 1) both;
-  }
-
   .scroll-cue {
     animation: scroll-cue 2.8s ease-in-out infinite;
   }
 
-  /* A single diagonal shimmer that travels across the glyphs themselves. */
   .text-shine {
     background-image: linear-gradient(
       112deg,
@@ -153,7 +140,6 @@
     animation: text-shine 2.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   }
 
-  /* Soft ink bloom behind form fields on focus. */
   .field-bloom {
     background-image: radial-gradient(
       120% 140% at 0% 100%,
@@ -204,7 +190,6 @@
     );
   }
 
-  /* A warm bloom that breathes behind a card so it is never flat. */
   .glow-warm {
     background-image: radial-gradient(
       85% 70% at 50% 112%,
@@ -305,23 +290,15 @@
   }
 }
 
-@keyframes intro-sway {
+@keyframes scroll-cue {
   0%,
   100% {
-    transform: translate3d(0, 0, 0) rotate(0deg);
+    transform: translateY(0);
+    opacity: 0.35;
   }
   50% {
-    transform: translate3d(0, -9px, 0) rotate(0.5deg);
-  }
-}
-
-@keyframes soft-float {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
-  50% {
-    transform: translate3d(0, -12px, 0);
+    transform: translateY(8px);
+    opacity: 1;
   }
 }
 
@@ -353,18 +330,6 @@
   }
 }
 
-@keyframes scroll-cue {
-  0%,
-  100% {
-    transform: translateY(0);
-    opacity: 0.35;
-  }
-  50% {
-    transform: translateY(8px);
-    opacity: 1;
-  }
-}
-
 .wing-flap {
   transform-box: fill-box;
   animation: wing-flap 0.44s ease-in-out infinite;
@@ -388,11 +353,32 @@
   }
 }
 
+.mist-drift {
+  animation: mist-drift var(--mist-dur, 18s) linear infinite;
+  animation-delay: var(--mist-delay, 0s);
+  will-change: transform, opacity;
+}
+
+@keyframes mist-drift {
+  0% {
+    transform: translate3d(0, 16%, 0) scale(0.82);
+    opacity: 0;
+  }
+  28% {
+    opacity: 0.55;
+  }
+  100% {
+    transform: translate3d(var(--mist-x, 6px), -70%, 0) scale(1.22);
+    opacity: 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
 
+  .mist-drift,
   .sway,
   .sway-reverse,
   .float-y,
@@ -400,8 +386,6 @@
   .leaf-fall,
   .petal-sway,
   .ken-burns,
-  .intro-sway,
-  .soft-float,
   .scroll-cue,
   .wing-flap {
     animation: none !important;

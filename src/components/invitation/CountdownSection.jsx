@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import SectionLabel from "@/components/invitation/SectionLabel";
 import { GoldRule } from "@/components/invitation/Ornaments";
-import SectionGarden from "@/components/invitation/ornaments/SectionGarden";
+import SectionFlorals from "@/components/invitation/ornaments/Flora";
 import { EASE } from "@/components/invitation/motion/Reveal";
 import { StaggerGroup, StaggerItem } from "@/components/invitation/motion/Stagger";
 import useCountdown from "@/hooks/useCountdown";
@@ -37,8 +37,9 @@ export default function CountdownSection() {
   ];
 
   return (
-    <section className="tone-cream relative overflow-hidden px-5 py-20 sm:px-8 sm:py-24">
-      <SectionGarden seed={5} tone="sage" accent="rose" vines={false} opacity={0.34} />
+    <section className="tone-cream relative px-5 py-20 sm:px-8 sm:py-24">
+      <SectionFlorals variant="countdown" />
+
       <div className="relative z-10 mx-auto max-w-xl text-center">
         <SectionLabel align="center">Hari yang dinanti</SectionLabel>
 

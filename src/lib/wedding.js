@@ -24,10 +24,10 @@ export const WEDDING = {
     mother: "Ibu Antik Suifiyah",
   },
   initials: "R & A",
-  dateLabel: "Jumat, 6 November 2026",
-  dateShort: "06 · 11 · 2026",
+  dateLabel: "Jumat, 6 Desember 2026",
+  dateShort: "06 · 12 · 2026",
   region: "Tajinan, Malang",
-  countdownTarget: "2026-11-06T09:00:00+07:00",
+  countdownTarget: "2026-12-06T09:00:00+07:00",
   verse:
     "Di antara tanda-tanda (kebesaran)-Nya ialah bahwa Dia menciptakan pasangan-pasangan untukmu dari (jenis) dirimu sendiri agar kamu merasa tenteram kepadanya. Dia menjadikan di antaramu rasa cinta dan kasih sayang. Sesungguhnya pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir.",
   verseSource: "Surah Ar-Rum Ayat 21",
@@ -35,14 +35,14 @@ export const WEDDING = {
     {
       key: "akad",
       label: "Akad Nikah",
-      day: "Jumat, 6 November 2026",
-      time: "09:00 WIB - selesai",
+      day: "Jumat, 6 Desember 2026",
+      time: "08:00 WIB - selesai",
     },
     {
       key: "resepsi",
       label: "Resepsi",
-      day: "Jumat, 6 November 2026",
-      time: "09:00 WIB - selesai",
+      day: "Jumat, 7 Desember 2026",
+      time: "08:00 WIB - selesai",
     },
   ],
   venue: {

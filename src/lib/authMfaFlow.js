@@ -1,10 +1,12 @@
 import { base44 } from '@/api/base44Client';
-import { appParams } from '@/lib/app-params';
+import { getAppParams } from '@/lib/app-params';
+
+const appId = () => getAppParams().appId;
 
 // The app's own MFA: sign-in challenge, enrollment and factor management, against the app's
 // /api/apps/<id>/auth/mfa routes. Credentials stay in memory, never in the URL or storage.
 
-const PKCE_KEY = () => `app-mfa-pkce:${appParams.appId}`;
+const PKCE_KEY = () => `app-mfa-pkce:${appId()}`;
 const encode = bytes => btoa(String.fromCharCode(...bytes)).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
 
 export class MfaError extends Error {
@@ -21,8 +23,8 @@ export class MfaError extends Error {
 }
 
 function authPath(suffix) {
-  if (!/^[a-f0-9]{24}$/i.test(appParams.appId)) throw new Error('Invalid app ID');
-  return `/api/apps/${appParams.appId}/auth/${suffix}`;
+  if (!/^[a-f0-9]{24}$/i.test(appId())) throw new Error('Invalid app ID');
+  return `/api/apps/${appId()}/auth/${suffix}`;
 }
 
 async function request(suffix, { method = 'POST', body, token, headers } = {}) {
@@ -97,7 +99,7 @@ const isInAppBrowser = () => /LinkedIn|Twitter/i.test(navigator.userAgent);
 
 // The app's sign-in settings: auth_config holds mfa_policy and the enabled sign-in methods.
 export async function loadSignInOptions() {
-  const response = await fetch(`/api/apps/public/login-info/by-id/${appParams.appId}`);
+  const response = await fetch(`/api/apps/public/login-info/by-id/${appId()}`);
   if (!response.ok) throw new Error('Unable to load sign-in options');
   return response.json();
 }
@@ -113,7 +115,7 @@ export async function signInWithProvider(provider, returnTo, { manage = false } 
   if (isInAppBrowser()) {
     // In-app browsers hand sign-in to the system browser through the platform's MFA page.
     const url = new URL('/auth/mfa', window.location.origin);
-    url.search = new URLSearchParams({ app_id: appParams.appId, oauth_start: provider, from_url: returnTo, ...(manage ? { security: '1' } : {}) });
+    url.search = new URLSearchParams({ app_id: appId(), oauth_start: provider, from_url: returnTo, ...(manage ? { security: '1' } : {}) });
     window.location.assign(url.href);
     return;
   }
@@ -122,12 +124,12 @@ export async function signInWithProvider(provider, returnTo, { manage = false } 
   sessionStorage.setItem(PKCE_KEY(), verifier);
   const workspaceSso = provider === 'sso' && info.auth_config?.use_workspace_sso && info.organization_id;
   const path = provider === 'sso'
-    ? (workspaceSso ? `/api/apps/${info.organization_id}/${appParams.appId}/auth/sso/login` : `/api/apps/${appParams.appId}/auth/sso/login`)
+    ? (workspaceSso ? `/api/apps/${info.organization_id}/${appId()}/auth/sso/login` : `/api/apps/${appId()}/auth/sso/login`)
     : `/api/apps/auth${provider === 'google' ? '' : `/${provider}`}/login`;
   const url = new URL(path, window.location.origin);
   url.search = new URLSearchParams({
     from_url: new URL(returnTo, window.location.origin).href,
-    ...(workspaceSso ? {} : { app_id: appParams.appId }),
+    ...(workspaceSso ? {} : { app_id: appId() }),
     ...(manage ? { app_mfa_action: 'manage' } : {}),
     app_mfa_code_challenge: challenge,
     app_mfa_return: '/mfa',

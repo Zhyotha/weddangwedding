@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Check, Copy, MessageCircle } from "lucide-react";
 import SectionLabel from "@/components/invitation/SectionLabel";
-import SectionGarden from "@/components/invitation/ornaments/SectionGarden";
+import SectionFlorals from "@/components/invitation/ornaments/Flora";
 import { StaggerGroup, StaggerItem } from "@/components/invitation/motion/Stagger";
 import { WEDDING } from "@/lib/wedding";
 
@@ -33,8 +33,9 @@ export default function ShareSection() {
   };
 
   return (
-    <section className="relative overflow-hidden px-5 py-20 sm:px-8 sm:py-24">
-      <SectionGarden seed={10} tone="sage" accent="rose" vines={false} opacity={0.3} />
+    <section className="relative px-5 py-20 sm:px-8 sm:py-24">
+      <SectionFlorals variant="share" />
+
       <StaggerGroup className="relative z-10 mx-auto max-w-xl text-center" stagger={0.2} amount={0.4}>
         <StaggerItem>
           <SectionLabel align="center">Bagikan undangan</SectionLabel>
@@ -60,7 +61,7 @@ export default function ShareSection() {
                   key={copied ? "check" : "copy"}
                   initial={{ scale: 0.4, opacity: 0, rotate: -25 }}
                   animate={{ scale: 1, opacity: 1, rotate: 0 }}
-                  exit={{ scale: 0.4, opacity: 0 }}
+                  exit={{ scale: 0.4, opacity: 0, rotate: 25 }}
                   transition={{ duration: 0.3 }}
                   className="flex"
                 >

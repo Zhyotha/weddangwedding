@@ -1,50 +1,36 @@
 import { motion, useReducedMotion } from "framer-motion";
 import Sway from "@/components/invitation/motion/Sway";
 import { EASE } from "@/components/invitation/motion/Reveal";
-import { Cluster, Divider } from "@/components/invitation/ornaments/Botanicals";
+import { BlossomBranch, Divider, Garland, Sprig } from "@/components/invitation/ornaments/Botanicals";
 
-/**
- * A watercolour floral spray anchored in a corner.
- *
- * Drawn as transparency-first SVG (see Botanicals), so it never shows the
- * paper-white rectangle the old JPG did. It sways on its own root and floats at
- * its own speed, so the edges of the page are never still.
- */
-export function CornerFloral({
+/** A small botanical that grows out of a card's corner. */
+export function FloralAccent({
   className = "",
-  flipX = false,
-  flipY = false,
-  opacity = 0.75,
-  duration = 16,
-  amplitude = 1.3,
-  delay = 0,
-  float = 5,
-  origin = "50% 50%",
+  art = "sprig",
   tone = "sage",
   accent = "rose",
+  flipX = false,
+  flipY = false,
+  opacity = 0.62,
+  duration = 18,
+  amplitude = 2.4,
 }) {
+  const Art = art === "blossom" ? BlossomBranch : Sprig;
+
   return (
-    <div aria-hidden="true" className={`pointer-events-none absolute ${className}`}>
-      <Sway
-        className="h-full w-full"
-        duration={duration}
-        amplitude={amplitude}
-        delay={delay}
-        float={float}
-        origin={origin}
-        reverse={flipX}
-      >
-        <div
-          className="h-full w-full"
+    <span aria-hidden="true" className={`pointer-events-none absolute ${className}`}>
+      <Sway className="h-full w-full" duration={duration} amplitude={amplitude} origin="50% 90%" float={3}>
+        <span
+          className="block h-full w-full"
           style={{
-            transform: `scale(${flipX ? -1 : 1}, ${flipY ? -1 : 1})`,
             opacity,
+            transform: `scale(${flipX ? -1 : 1}, ${flipY ? -1 : 1})`,
           }}
         >
-          <Cluster tone={tone} accent={accent} className="h-full w-full" />
-        </div>
+          <Art tone={tone} accent={accent} className="h-full w-full" />
+        </span>
       </Sway>
-    </div>
+    </span>
   );
 }
 
@@ -61,7 +47,7 @@ export function BotanicalDivider({ className = "" }) {
       viewport={{ once: true, amount: 0.6 }}
       transition={{ duration: 1.4, ease: EASE }}
     >
-      <Divider className="h-9 w-56 opacity-80 sm:w-72" />
+      <Divider className="h-9 w-56 opacity-85 sm:w-72" />
     </motion.div>
   );
 }
@@ -93,6 +79,25 @@ export function GoldRule({ className = "" }) {
         viewport={{ once: true }}
         transition={{ duration: 1.2, ease: EASE }}
       />
+    </div>
+  );
+}
+
+/**
+ * The garland that closes the page. It sits above the footer's lower edge, so
+ * its blooms stay whole instead of being trimmed by the section boundary.
+ */
+export function BottomGarland({ className = "", opacity = 0.9, duration = 22, delay = 0.6 }) {
+  return (
+    <div
+      aria-hidden="true"
+      className={`pointer-events-none absolute inset-x-0 bottom-0 z-0 flex justify-center ${className}`}
+    >
+      <Sway className="h-full w-full max-w-3xl" duration={duration} amplitude={1} origin="50% 100%" delay={delay}>
+        <div className="h-full w-full" style={{ opacity }}>
+          <Garland tone="sage" accent="rose" className="h-full w-full" />
+        </div>
+      </Sway>
     </div>
   );
 }

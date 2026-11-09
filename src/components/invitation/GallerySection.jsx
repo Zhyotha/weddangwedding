@@ -3,7 +3,7 @@ import { AnimatePresence } from "framer-motion";
 import { Image } from "@/components/ui/image";
 import SectionLabel from "@/components/invitation/SectionLabel";
 import PhotoLightbox from "@/components/invitation/PhotoLightbox";
-import SectionGarden from "@/components/invitation/ornaments/SectionGarden";
+import SectionFlorals from "@/components/invitation/ornaments/Flora";
 import { StaggerGroup, StaggerItem } from "@/components/invitation/motion/Stagger";
 import { WEDDING } from "@/lib/wedding";
 
@@ -12,8 +12,9 @@ export default function GallerySection() {
   const photos = WEDDING.gallery;
 
   return (
-    <section id="galeri" className="tone-blush relative overflow-hidden px-5 py-20 sm:px-8 sm:py-24">
-      <SectionGarden seed={7} tone="rose" accent="sage" opacity={0.34} />
+    <section id="galeri" className="tone-blush relative px-5 py-20 sm:px-8 sm:py-24">
+      <SectionFlorals variant="gallery" />
+
       <div className="relative z-10 mx-auto max-w-xl">
         <StaggerGroup className="text-center" stagger={0.18} amount={0.35}>
           <StaggerItem>
@@ -37,22 +38,22 @@ export default function GallerySection() {
                   "--float-reach": `${4 + (index % 3) * 2}px`,
                 }}
               >
-              <button
-                type="button"
-                onClick={() => setOpenIndex(index)}
-                aria-label={`Buka foto: ${photo.alt}`}
-                className="group relative block w-full break-inside-avoid overflow-hidden border border-accent/25 bg-card/40 p-1.5 shadow-[0_20px_40px_-38px_rgba(74,34,34,0.9)] transition-colors duration-500 hover:border-accent/70"
-              >
-                <span className="block overflow-hidden">
-                  <Image
-                    src={photo.src}
-                    alt={photo.alt}
-                    fittingType="fill"
-                    className="aspect-[3/4] w-full object-cover transition-transform [transition-duration:1.4s] ease-out group-hover:scale-[1.06]"
-                  />
-                </span>
-                <span className="pointer-events-none absolute inset-1.5 bg-gradient-to-t from-[#4A2222]/35 via-transparent to-transparent opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
-              </button>
+                <button
+                  type="button"
+                  onClick={() => setOpenIndex(index)}
+                  aria-label={`Buka foto: ${photo.alt}`}
+                  className="group relative block w-full break-inside-avoid overflow-hidden border border-accent/25 bg-card/40 p-1.5 shadow-[0_20px_40px_-38px_rgba(74,34,34,0.9)] transition-colors duration-500 hover:border-accent/70"
+                >
+                  <span className="block overflow-hidden">
+                    <Image
+                      src={photo.src}
+                      alt={photo.alt}
+                      fittingType="fill"
+                      className="aspect-[3/4] w-full object-cover transition-transform [transition-duration:1.4s] ease-out group-hover:scale-[1.06]"
+                    />
+                  </span>
+                  <span className="pointer-events-none absolute inset-1.5 bg-gradient-to-t from-[#4A2222]/35 via-transparent to-transparent opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
+                </button>
               </div>
             </StaggerItem>
           ))}

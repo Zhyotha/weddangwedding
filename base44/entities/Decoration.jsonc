@@ -1,0 +1,80 @@
+{
+  "name": "Decoration",
+  "type": "object",
+  "properties": {
+    "label": {
+      "type": "string",
+      "title": "Nama Dekorasi"
+    },
+    "image_url": {
+      "type": "string",
+      "title": "Gambar"
+    },
+    "section": {
+      "type": "string",
+      "enum": [
+        "opening",
+        "verse",
+        "greeting",
+        "couple",
+        "countdown",
+        "events",
+        "venue",
+        "gallery",
+        "rsvp",
+        "wishes",
+        "share",
+        "footer"
+      ],
+      "default": "couple",
+      "title": "Bagian"
+    },
+    "x": {
+      "type": "number",
+      "default": 50,
+      "title": "Posisi X (%)"
+    },
+    "y": {
+      "type": "number",
+      "default": 120,
+      "title": "Posisi Y (px)"
+    },
+    "width": {
+      "type": "number",
+      "default": 220,
+      "title": "Lebar (px)"
+    },
+    "rotation": {
+      "type": "number",
+      "default": 0,
+      "title": "Rotasi (derajat)"
+    },
+    "opacity": {
+      "type": "number",
+      "default": 1,
+      "title": "Opasitas"
+    }
+  },
+  "required": [
+    "image_url",
+    "section"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {},
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
