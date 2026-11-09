@@ -24,8 +24,8 @@ export const WEDDING = {
     mother: "Ibu Henik Yunaita",
   },
   initials: "A & R",
-  dateLabel: "Jumat, 7 Desember 2026",
-  dateShort: "06 · 12 · 2026",
+  dateLabel: "Senin, 7 Desember 2026",
+  dateShort: "7 · 12 · 2026",
   region: "Tajinan, Malang",
   countdownTarget: "2026-12-06T09:00:00+07:00",
   verse:
@@ -35,13 +35,13 @@ export const WEDDING = {
     {
       key: "akad",
       label: "Akad Nikah",
-      day: "Jumat, 6 Desember 2026",
+      day: "Minggu, 6 Desember 2026",
       time: "08:00 WIB - selesai",
     },
     {
       key: "resepsi",
       label: "Resepsi",
-      day: "Jumat, 7 Desember 2026",
+      day: "Senin, 7 Desember 2026",
       time: "08:00 WIB - selesai",
     },
   ],
