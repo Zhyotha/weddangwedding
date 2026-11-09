@@ -18,9 +18,18 @@ export default function SiteFooter() {
 
         <Reveal delay={0.15} variant="soft" duration={1.3}>
           <div className="relative mt-4 inline-block">
-            <p className="font-script text-[2.9rem] leading-tight text-[#4A2222]">
-              {WEDDING.groom.name} & {WEDDING.bride.name}
-            </p>
+            <span className="font-script text-[2.9rem] leading-tight text-[#4A2222]">
+              {WEDDING.groom.name}
+            </span>
+
+            <span className="font-script text-[2.9rem] leading-tight text-[#4A2222]">
+            <br></br> & <br></br>
+            </span>
+
+            <span className="font-script text-[2.9rem] leading-tight text-[#4A2222]">
+              {WEDDING.bride.name}
+            </span>
+
             <Sheen delay={1.8} repeatDelay={8} />
           </div>
         </Reveal>
