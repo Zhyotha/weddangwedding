@@ -21,7 +21,7 @@ export default function CoverGate({ onOpen }) {
       >
         <Image
           src={WEDDING.images.cover}
-          alt="Romli dan Andini"
+          alt="Andini & Romli"
           fittingType="fill"
           className="h-full w-full object-cover"
         />

@@ -27,7 +27,7 @@ export default function GreetingSection() {
             <span className="h-px w-7 bg-accent/50" />
             <span className="block h-2.5 w-2.5 rotate-45 border border-accent/60" />
             <span className="font-display text-[0.6rem] uppercase tracking-[0.3em] text-foreground/45">
-              R &amp; A
+              A &amp; R
             </span>
             <span className="block h-2.5 w-2.5 rotate-45 border border-accent/60" />
             <span className="h-px w-7 bg-accent/50" />
@@ -35,7 +35,7 @@ export default function GreetingSection() {
         </StaggerItem>
         <StaggerItem variant="pop">
           <div className="relative mx-auto mt-6 inline-block">
-            <p className="font-script text-3xl text-accent">Romli &amp; Andini</p>
+            <p className="font-script text-3xl text-accent">Andini &amp; Romli</p>
             <Sheen delay={1.2} repeatDelay={8} />
           </div>
         </StaggerItem>
