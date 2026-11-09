@@ -27,8 +27,7 @@ export default function EventsSection() {
           </StaggerItem>
           <StaggerItem>
             <p className="mt-6 text-[0.95rem] leading-[1.9] text-foreground/70">
-              Dengan memohon rahmat dan ridho Allah SWT, kami bermaksud menyelenggarakan
-              acara pernikahan putra-putri kami.
+              Kami bermaksud menyelenggarakan rangkaian acara pernikahan ini pada waktu berikut:
             </p>
           </StaggerItem>
         </StaggerGroup>
