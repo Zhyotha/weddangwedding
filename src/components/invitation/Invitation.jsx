@@ -1,6 +1,5 @@
 
 import { useEffect, useRef, useState } from "react";
-
 import IntroExperience from "@/components/invitation/intro/IntroExperience";
 import OpeningSection from "@/components/invitation/OpeningSection";
 import VerseSection from "@/components/invitation/VerseSection";
@@ -15,10 +14,8 @@ import WishesSection from "@/components/invitation/WishesSection";
 import ShareSection from "@/components/invitation/ShareSection";
 import SiteFooter from "@/components/invitation/SiteFooter";
 import SiteNav from "@/components/invitation/SiteNav";
-
 import MusicToggle from "@/components/invitation/MusicToggle";
 import { createAmbientMusic } from "@/lib/ambientMusic";
-
 import { StudioProvider } from "@/components/decor/StudioProvider";
 import SectionShell from "@/components/decor/SectionShell";
 import StudioChrome from "@/components/decor/StudioChrome";
@@ -68,12 +65,19 @@ export default function Invitation() {
     setPlaying(success);
   };
 
-  // Enter the invitation
-  const handleEnter = () => {
+  const handleEnter = async () => {
     if (entered) return;
 
     setEntered(true);
     window.scrollTo(0, 0);
+
+    // Start background music when the visitor opens the invitation
+    if (!musicRef.current) {
+      musicRef.current = createAmbientMusic();
+    }
+
+    const success = await musicRef.current.start();
+    setPlaying(success);
 
     window.setTimeout(() => {
       setIntroMounted(false);
