@@ -45,7 +45,7 @@ export default function CoupleSection() {
                 <div className="ken-burns">
                   <Image
                     src={WEDDING.images.hands}
-                    alt="Kebersamaan Romli dan Andini"
+                    alt="Kebersamaan Andini dan Romli "
                     fittingType="fill"
                     focalPointY={0.4}
                     className="aspect-[4/5] w-full object-cover sm:aspect-[3/2]"
@@ -66,13 +66,13 @@ export default function CoupleSection() {
           stagger={0.22}
           amount={0.15}
         >
-          <Person person={WEDDING.groom} role="Mempelai Pria" />
+          <Person person={WEDDING.groom} role="Mempelai Wanita" />
           <div className="hidden items-center justify-center sm:flex">
             <Sway duration={13} amplitude={4} origin="50% 50%" float={5}>
               <span className="font-script text-4xl text-accent/70">&amp;</span>
             </Sway>
           </div>
-          <Person person={WEDDING.bride} role="Mempelai Wanita" />
+          <Person person={WEDDING.bride} role="Mempelai Pria" />
         </StaggerGroup>
       </div>
     </section>
