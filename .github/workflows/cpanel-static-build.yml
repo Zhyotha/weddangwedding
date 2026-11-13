@@ -1,0 +1,37 @@
+name: cPanel static build
+
+on:
+  push:
+    branches:
+      - migration/static-cpanel
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static SPA
+        run: npm run build
+
+      - name: Upload cPanel-ready files
+        uses: actions/upload-artifact@v4
+        with:
+          name: weddangwedding-cpanel
+          path: dist/client/
+          if-no-files-found: error
+          retention-days: 7
