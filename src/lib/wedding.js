@@ -35,7 +35,7 @@ export const WEDDING = {
     {
       key: "akad",
       label: "Akad Nikah",
-      day: "Minggu, 6 Desember 2026",
+      day: "Senin, 7 Desember 2026",
       time: "08:00 WIB - selesai",
     },
     {
