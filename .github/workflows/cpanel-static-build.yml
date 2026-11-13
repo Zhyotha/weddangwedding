@@ -29,10 +29,16 @@ jobs:
       - name: Build static SPA
         run: npm run build
 
+      # Vite may omit dotfiles when copying public assets. Copy it explicitly,
+      # then configure upload-artifact to retain hidden files.
+      - name: Add Apache SPA fallback
+        run: cp public/.htaccess dist/client/.htaccess
+
       - name: Upload cPanel-ready files
         uses: actions/upload-artifact@v4
         with:
           name: weddangwedding-cpanel
           path: dist/client/
           if-no-files-found: error
+          include-hidden-files: true
           retention-days: 7
