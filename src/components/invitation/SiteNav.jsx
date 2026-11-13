@@ -6,8 +6,6 @@ const LINKS = [
   { href: "#mempelai", label: "Mempelai" },
   { href: "#acara", label: "Acara" },
   { href: "#galeri", label: "Galeri" },
-  { href: "#rsvp", label: "RSVP" },
-  { href: "#ucapan", label: "Ucapan" },
 ];
 
 export default function SiteNav() {
@@ -19,8 +17,6 @@ export default function SiteNav() {
       el: document.querySelector(link.href),
     })).filter((section) => section.el);
 
-    // The section under the middle of the viewport is the current one; none
-    // means the guest is still in the opening — so no link stays lit.
     const sync = () => {
       const middle = window.innerHeight / 2;
       const current = sections.find((section) => {

@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from "react";
 import IntroExperience from "@/components/invitation/intro/IntroExperience";
 import OpeningSection from "@/components/invitation/OpeningSection";
@@ -9,8 +8,6 @@ import CountdownSection from "@/components/invitation/CountdownSection";
 import EventsSection from "@/components/invitation/EventsSection";
 import VenueSection from "@/components/invitation/VenueSection";
 import GallerySection from "@/components/invitation/GallerySection";
-import RsvpSection from "@/components/invitation/RsvpSection";
-import WishesSection from "@/components/invitation/WishesSection";
 import ShareSection from "@/components/invitation/ShareSection";
 import SiteFooter from "@/components/invitation/SiteFooter";
 import SiteNav from "@/components/invitation/SiteNav";
@@ -24,24 +21,18 @@ import StudioLauncher from "@/components/decor/StudioLauncher";
 export default function Invitation() {
   const [entered, setEntered] = useState(false);
   const [introMounted, setIntroMounted] = useState(true);
-
-  // Background music state
   const [playing, setPlaying] = useState(false);
   const musicRef = useRef(null);
 
-  // Lock scrolling while the intro is displayed
   useEffect(() => {
     if (!introMounted) return undefined;
-
     const previous = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-
     return () => {
       document.body.style.overflow = previous;
     };
   }, [introMounted]);
 
-  // Clean up audio when the invitation unmounts
   useEffect(() => {
     return () => {
       musicRef.current?.dispose();
@@ -49,39 +40,25 @@ export default function Invitation() {
     };
   }, []);
 
-  // Toggle background music
   const handleToggleMusic = async () => {
-    if (!musicRef.current) {
-      musicRef.current = createAmbientMusic();
-    }
-
+    if (!musicRef.current) musicRef.current = createAmbientMusic();
     if (musicRef.current.isPlaying()) {
       musicRef.current.stop();
       setPlaying(false);
       return;
     }
-
     const success = await musicRef.current.start();
     setPlaying(success);
   };
 
   const handleEnter = async () => {
     if (entered) return;
-
     setEntered(true);
     window.scrollTo(0, 0);
-
-    // Start background music when the visitor opens the invitation
-    if (!musicRef.current) {
-      musicRef.current = createAmbientMusic();
-    }
-
+    if (!musicRef.current) musicRef.current = createAmbientMusic();
     const success = await musicRef.current.start();
     setPlaying(success);
-
-    window.setTimeout(() => {
-      setIntroMounted(false);
-    }, 1600);
+    window.setTimeout(() => setIntroMounted(false), 1600);
   };
 
   return (
@@ -98,75 +75,30 @@ export default function Invitation() {
             entered ? "opacity-100" : "opacity-0"
           }`}
         >
-          {/* Full-bleed invitation sections */}
           <main className="relative w-full pb-32">
             {entered && (
               <>
-                <SectionShell id="opening">
-                  <OpeningSection />
-                </SectionShell>
-
-                <SectionShell id="verse">
-                  <VerseSection />
-                </SectionShell>
-
-                <SectionShell id="greeting">
-                  <GreetingSection />
-                </SectionShell>
-
-                <SectionShell id="couple">
-                  <CoupleSection />
-                </SectionShell>
-
-                <SectionShell id="countdown">
-                  <CountdownSection />
-                </SectionShell>
-
-                <SectionShell id="events">
-                  <EventsSection />
-                </SectionShell>
-
-                <SectionShell id="venue">
-                  <VenueSection />
-                </SectionShell>
-
-                <SectionShell id="gallery">
-                  <GallerySection />
-                </SectionShell>
-
-                <SectionShell id="rsvp">
-                  <RsvpSection />
-                </SectionShell>
-
-                <SectionShell id="wishes">
-                  <WishesSection />
-                </SectionShell>
-
-                <SectionShell id="share">
-                  <ShareSection />
-                </SectionShell>
-
-                <SectionShell id="footer">
-                  <SiteFooter />
-                </SectionShell>
+                <SectionShell id="opening"><OpeningSection /></SectionShell>
+                <SectionShell id="verse"><VerseSection /></SectionShell>
+                <SectionShell id="greeting"><GreetingSection /></SectionShell>
+                <SectionShell id="couple"><CoupleSection /></SectionShell>
+                <SectionShell id="countdown"><CountdownSection /></SectionShell>
+                <SectionShell id="events"><EventsSection /></SectionShell>
+                <SectionShell id="venue"><VenueSection /></SectionShell>
+                <SectionShell id="gallery"><GallerySection /></SectionShell>
+                <SectionShell id="share"><ShareSection /></SectionShell>
+                <SectionShell id="footer"><SiteFooter /></SectionShell>
               </>
             )}
           </main>
-
           {entered && <SiteNav />}
         </div>
 
-        {/* Opening intro animation */}
         {introMounted && <IntroExperience onEnter={handleEnter} />}
 
-        {/* Background music and decoration editor */}
         {entered && (
           <>
-            <MusicToggle
-              playing={playing}
-              onToggle={handleToggleMusic}
-            />
-
+            <MusicToggle playing={playing} onToggle={handleToggleMusic} />
             <StudioLauncher />
             <StudioChrome />
           </>

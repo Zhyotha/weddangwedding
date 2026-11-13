@@ -11,8 +11,6 @@ export const DECOR_SECTIONS = [
   { id: "events", label: "Rangkaian Acara" },
   { id: "venue", label: "Lokasi" },
   { id: "gallery", label: "Galeri" },
-  { id: "rsvp", label: "Konfirmasi" },
-  { id: "wishes", label: "Ucapan" },
   { id: "share", label: "Bagikan" },
   { id: "footer", label: "Penutup" },
 ];

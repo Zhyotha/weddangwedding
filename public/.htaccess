@@ -1,0 +1,13 @@
+DirectoryIndex _shell.html index.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Serve real files and directories normally (including JS, CSS, images and fonts).
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Route application URLs to the generated TanStack Start SPA shell.
+  RewriteRule ^ _shell.html [L]
+</IfModule>
