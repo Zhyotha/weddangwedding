@@ -17,8 +17,7 @@ export default defineConfig({
   environments: {
     ssr: {
       optimizeDeps: { include: PREBUNDLE },
-      // Source maps for the Worker only, never served: they let Base44 point an error's stack at the app's own
-      // files. Without the sources, so the app's code isn't copied into them. The browser build gets none.
+      // Retain source maps for the Worker build; the cPanel deployment uses only static client output.
       build: { sourcemap: true, rolldownOptions: { output: { sourcemapExcludeSources: true } } },
     },
   },
@@ -29,9 +28,13 @@ export default defineConfig({
       analyticsTracker: true,
       visualEditAgent: true,
     }),
-    // No inspector: a restarted dev server would race the old one for port 9229 and crash.
+    // TanStack Start still uses its server build pipeline during compilation. cPanel receives only dist/client.
     cloudflare({ viteEnvironment: { name: "ssr" }, inspectorPort: false }),
-    tanstackStart({ srcDirectory: "src" }),
+    tanstackStart({
+      srcDirectory: "src",
+      // Emit a static app shell; the invitation itself renders and animates in the visitor's browser.
+      spa: { enabled: true },
+    }),
     react(),
   ],
 });
