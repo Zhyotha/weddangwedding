@@ -3,6 +3,7 @@ name: cPanel static build
 on:
   push:
     branches:
+      - master
       - migration/static-cpanel
   workflow_dispatch:
 
